@@ -2,13 +2,11 @@ package bg.softuni.ShopApp.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseEntity{
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -28,15 +26,17 @@ public class User {
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 
+    @OneToOne(mappedBy = "user")
+    private OrderHistory orderHistory;
+
+    @OneToOne(mappedBy = "user")
+    private Order order;
+
+    @OneToMany()
+    private List<Role> roles;
+
+
     public User() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -85,5 +85,29 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public OrderHistory getOrderHistory() {
+        return orderHistory;
+    }
+
+    public void setOrderHistory(OrderHistory orderHistory) {
+        this.orderHistory = orderHistory;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
