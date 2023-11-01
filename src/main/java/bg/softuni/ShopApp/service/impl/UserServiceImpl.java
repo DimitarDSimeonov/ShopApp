@@ -22,4 +22,9 @@ public class UserServiceImpl implements UserService {
     public boolean existEmail(String email) {
         return userRepository.existByEmail(email);
     }
+
+    @Override
+    public boolean existPhoneNumber(String phoneNumber) {
+        return userRepository.existByPhoneNumber(phoneNumber);
+    }
 }
