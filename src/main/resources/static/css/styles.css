@@ -1,0 +1,17 @@
+form {
+ max-width : 80%;
+ margin: auto;
+ display: contents;
+}
+
+body {
+    background-color: rgb(162, 250, 213);
+}
+
+body h1 {
+    text-align: center;
+    
+}
+.form-row {
+    margin: auto;
+}
