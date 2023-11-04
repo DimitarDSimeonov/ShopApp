@@ -17,7 +17,6 @@ public class SecurityConfiguration {
                authorizeRequest
                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                .requestMatchers("/", "/users/register", "/users/login").permitAll()
-               .requestMatchers("/resources/static/*").permitAll()
                //ToDo make other link
         ).formLogin(
                formLogin ->

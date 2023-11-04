@@ -15,16 +15,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean existUsername(String username) {
-        return userRepository.existByUsername(username);
+        return userRepository.findByUsername(username) != null;
     }
 
     @Override
     public boolean existEmail(String email) {
-        return userRepository.existByEmail(email);
+        return userRepository.findByEmail(email) != null;
     }
 
     @Override
     public boolean existPhoneNumber(String phoneNumber) {
-        return userRepository.existByPhoneNumber(phoneNumber);
+        return userRepository.findByPhoneNumber(phoneNumber) != null;
     }
 }

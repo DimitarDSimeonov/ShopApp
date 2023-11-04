@@ -1,19 +1,20 @@
-package bg.softuni.ShopApp.vaidation.email;
+package bg.softuni.ShopApp.vaidation.password;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = UniqueEmailValidator.class)
-@Target(ElementType.FIELD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface UniqueEmail {
+import static java.lang.annotation.ElementType.*;
 
-    String message() default "Този имейл е вече зает!";
+@Target(TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Constraint(validatedBy = PasswordMatcherValidator.class)
+public @interface PasswordMatcher {
+
+    String message() default "Въведените пароли не съвпадат!";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
