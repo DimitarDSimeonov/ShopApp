@@ -28,11 +28,9 @@ public class UserRegisterDTO {
     private String lastName;
 
     @Email(regexp = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-]+)(\\.[a-zA-Z]{2,5}){1,2}$", message = "Моля въведете валиден имейл!")
-    @NotBlank(message = "Моля да въведете имай!")
     @UniqueEmail
     private String email;
 
-    @NotBlank(message = "Моля да въведете телефонен номер!")
     @Pattern(regexp = "^0[0-9]{9}$" , message = "Моля въведете валиден телефонен номер!")
     @UniquePhoneNumber
     private String phoneNumber;

@@ -12,44 +12,48 @@
     <h1>Регистрирай се</h1>
 
     <form th:object="${userRegisterDTO}" th:method="post" th:action="@{/users/register}">
-        <th:block th:each="e : ${#fields.errors()}" th:object="${e}">
-            <div th:text="${e}" class="text-danger">Error messages</div>
-        </th:block>
         <div class="container two">
             <div class="form-group">
                 <div class="col-md-4 mb-3">
                     <label for="firstName">Име</label>
                     <input th:field="*{firstName}" type="text" name="firstName" id="firstName" class="form-control" required>
+                    <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="lastName">Фамилия</label>
                     <input th:field="*{lastName}" type="text" name="lastName" id="lastName" class="form-control" required>
+                    <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-4 mb-3">
                     <label for="username">Потребителско име</label>
                     <input th:field="*{username}" type="text" name="username" id="username" class="form-control" aria-describedby="inputGroupPrepend3" required>
+                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-4 mb-3">
                     <label for="password">Парола</label>
                     <input th:field="*{password}" type="password" name="password" id="password" class="form-control" required>
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="confirmPassword">Потвърди парола</label>
                     <input th:field="*{confirmPassword}" type="password" name="confirmPassword" id="confirmPassword" class="form-control" required>
+                    <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="text-danger"></div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-4 mb-3">
                     <label for="email">Имейл</label>
                     <input th:field="*{email}" type="email" name="email" id="email" class="form-control" required>
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="phoneNumber">Телефонен номер</label>
                     <input th:field="*{phoneNumber}" type="text" name="phoneNumber" id="phoneNumber" class="form-control" required>
+                    <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></div>
                 </div>
             </div>
             <button class="btn btn-outline-secondary" type="submit">Регистрация</button>
@@ -57,5 +61,6 @@
     </form>
 </div>
 
+<script src="/js/passwordMatcher.js"></script>
 </body>
 </html>
