@@ -32,7 +32,7 @@ public class User extends BaseEntity{
     @OneToOne(mappedBy = "user")
     private Order order;
 
-    @OneToMany()
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
 

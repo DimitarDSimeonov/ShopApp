@@ -2,12 +2,11 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
-<h1>Index page</h1>
-<form th:action="@{/users/login}" th:method="get">
-    <button type="submit">Влез</button>
+<form th:action="@{/users/logout}" th:method="post">
+    <button type="submit">Излез</button>
 </form>
 </body>
 </html>

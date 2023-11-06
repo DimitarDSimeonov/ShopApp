@@ -14,9 +14,12 @@
     <form  th:method="post" th:action="@{/users/login}">
         <div class="container two">
             <div class="form-group">
+                <p th:if="${error}" class="text-danger">
+                    Невалино потребителско име или парола
+                </p>
                 <div class="col-md-4 mb-3">
                     <label for="username">Потребителско име</label>
-                    <input type="text" name="username" id="username" class="form-control" aria-describedby="inputGroupPrepend3" required>
+                    <input type="text" name="username" id="username" th:value="${username}" class="form-control" aria-describedby="inputGroupPrepend3" required>
                     <div class="text-danger"></div>
                 </div>
                 <div class="col-md-4 mb-3">
