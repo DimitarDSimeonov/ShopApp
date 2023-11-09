@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<nav
+        th:fragment="navbar"
+        class="navbar navbar-expand-lg bg-secondary navbar-dark">
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto col-12 justify-content-between">
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/home">Добави обява</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+              <a class="nav-link" href="/home">Търсене</a>
+            </li>
+            <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/brands">Add brand</a>
+                </div>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <div class="form-inline">
+                    <form th:method="post"
+                          th:action="@{/users/logout}">
+                        <input type="submit" class="btn btn-link nav-link" value="Изход"/>
+                    </form>
+                </div>
+            </li>
+
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+                <a class="nav-link" href="/users/register">Register</a>
+            </li>
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+                <a class="nav-link" href="/users/login">Login</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+<footer th:fragment="footer" class="nav nav-bar bg-secondary">
+    <p class="text-white bg-secondary">dfgsdsdg</p>
+</footer>
+</body>
+</html>

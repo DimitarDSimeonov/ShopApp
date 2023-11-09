@@ -1,12 +1,17 @@
+body{
+   height: 100vh;
+}
+
+main{
+height: 90%
+}
+
 form {
  max-width : 80%;
  margin: auto;
  display: contents;
 }
 
-body {
-    background-color: rgb(162, 250, 213);
-}
 
 body h1 {
     text-align: center;
@@ -35,8 +40,17 @@ body h1 {
     max-width: 100%;
 }
 
-.btn.btn-outline-secondary {
+.btn.btn-secondary {
     display: block;
       margin-left: auto;
       margin-right: auto;
+}
+
+.jumbotron{
+    margin-bottom: 0;
+    height: 100%;
+}
+
+.container{
+    height:100%;
 }

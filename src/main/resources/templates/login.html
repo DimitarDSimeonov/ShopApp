@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -8,30 +9,36 @@
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="container">
-    <h1>Влез в акаунта си</h1>
-
-    <form  th:method="post" th:action="@{/users/login}">
-        <div class="container two">
-            <div class="form-group">
-                <p th:if="${error}" class="text-danger">
-                    Невалино потребителско име или парола
-                </p>
-                <div class="col-md-4 mb-3">
-                    <label for="username">Потребителско име</label>
-                    <input type="text" name="username" id="username" th:value="${username}" class="form-control" aria-describedby="inputGroupPrepend3" required>
-                    <div class="text-danger"></div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="password">Парола</label>
-                    <input type="password" name="password" id="password" class="form-control" required>
-                    <div class="text-danger"></div>
-                </div>
-            </div>
-            <button class="btn btn-outline-secondary" type="submit">Влез</button>
+<header>
+    <nav th:replace="~{fragments/common::navbar}"></nav>
+</header>
+<main>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Влез в акаунта си</h1>
+            <form  th:method="post" th:action="@{/users/login}">
+                    <div class="form-group">
+                        <p th:if="${error}" class="text-danger">
+                            Невалино потребителско име или парола
+                        </p>
+                        <div class="col-md-4 mb-3">
+                            <label for="username">Потребителско име</label>
+                            <input type="text" name="username" id="username" th:value="${username}" class="form-control" aria-describedby="inputGroupPrepend3" required>
+                            <div class="text-danger"></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="password">Парола</label>
+                            <input type="password" name="password" id="password" class="form-control" required>
+                            <div class="text-danger"></div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" type="submit">Влез</button>
+            </form>
         </div>
-    </form>
-</div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/common::footer}"></footer>
 
 </body>
 </html>
