@@ -1,9 +1,10 @@
 package bg.softuni.ShopApp.model.entity;
 
-import bg.softuni.ShopApp.model.entity.eums.Category;
-import bg.softuni.ShopApp.model.entity.eums.Location;
+import bg.softuni.ShopApp.model.entity.enums.Category;
+import bg.softuni.ShopApp.model.entity.enums.Location;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,6 +18,9 @@ public class Product extends BaseEntity{
     @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
 
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
+
     @Enumerated(EnumType.STRING)
     private Category category;
 
@@ -29,6 +33,8 @@ public class Product extends BaseEntity{
     @OneToMany(mappedBy = "product")
     private List<Comment> comments;
 
+    @OneToOne(mappedBy = "product")
+    private Picture picture;
 
     public Product() {
     }
@@ -79,5 +85,21 @@ public class Product extends BaseEntity{
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

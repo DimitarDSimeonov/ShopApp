@@ -1,6 +1,6 @@
 package bg.softuni.ShopApp.model.entity;
 
-import bg.softuni.ShopApp.model.entity.eums.RoleName;
+import bg.softuni.ShopApp.model.entity.enums.RoleName;
 import jakarta.persistence.*;
 
 @Entity

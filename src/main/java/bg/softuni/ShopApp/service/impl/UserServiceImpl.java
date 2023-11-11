@@ -2,7 +2,7 @@ package bg.softuni.ShopApp.service.impl;
 
 import bg.softuni.ShopApp.model.DTO.user.UserRegisterDTO;
 import bg.softuni.ShopApp.model.entity.User;
-import bg.softuni.ShopApp.model.entity.eums.RoleName;
+import bg.softuni.ShopApp.model.entity.enums.RoleName;
 import bg.softuni.ShopApp.repository.UserRepository;
 import bg.softuni.ShopApp.service.RoleService;
 import bg.softuni.ShopApp.service.UserService;

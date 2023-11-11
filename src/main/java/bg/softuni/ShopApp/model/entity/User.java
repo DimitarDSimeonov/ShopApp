@@ -35,6 +35,8 @@ public class User extends BaseEntity{
     @OneToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
+    @OneToOne(mappedBy = "user")
+    private Picture picture;
 
     public User() {
     }

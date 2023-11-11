@@ -1,7 +1,7 @@
 package bg.softuni.ShopApp.service.impl;
 
 import bg.softuni.ShopApp.model.entity.Role;
-import bg.softuni.ShopApp.model.entity.eums.RoleName;
+import bg.softuni.ShopApp.model.entity.enums.RoleName;
 import bg.softuni.ShopApp.repository.RoleRepository;
 import bg.softuni.ShopApp.service.RoleService;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package bg.softuni.ShopApp.model.entity.eums;
+package bg.softuni.ShopApp.model.entity.enums;
 
 public enum Location {
     София,
