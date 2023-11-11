@@ -38,6 +38,9 @@ public class User extends BaseEntity{
     @OneToOne(mappedBy = "user")
     private Picture picture;
 
+    @OneToMany(mappedBy = "seller", fetch = FetchType.EAGER)
+    private List<Product> offerProduct;
+
     public User() {
     }
 
@@ -111,5 +114,21 @@ public class User extends BaseEntity{
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+    }
+
+    public List<Product> getOfferProduct() {
+        return offerProduct;
+    }
+
+    public void setOfferProduct(List<Product> offerProduct) {
+        this.offerProduct = offerProduct;
     }
 }

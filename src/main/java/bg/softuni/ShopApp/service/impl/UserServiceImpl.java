@@ -1,5 +1,6 @@
 package bg.softuni.ShopApp.service.impl;
 
+import bg.softuni.ShopApp.model.DTO.product.ProductHomePageViewDTO;
 import bg.softuni.ShopApp.model.DTO.user.UserRegisterDTO;
 import bg.softuni.ShopApp.model.entity.User;
 import bg.softuni.ShopApp.model.entity.enums.RoleName;
@@ -9,6 +10,9 @@ import bg.softuni.ShopApp.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -53,5 +57,25 @@ public class UserServiceImpl implements UserService {
         User user = modelMapper.map(userRegisterDTO, User.class);
         user.setRoles(roleService.getByName(RoleName.USER));
         userRepository.save(user);
+    }
+
+    @Override
+    public User getByUsername(String username) {
+        return userRepository.findByUsername(username).get();
+    }
+
+    @Override
+    public List<ProductHomePageViewDTO> getMyOffers(String username) {
+        return userRepository
+                .findByUsername(username)
+                .get()
+                .getOfferProduct()
+                .stream()
+                .map(product -> {
+                    ProductHomePageViewDTO productHomePageViewDTO = modelMapper.map(product, ProductHomePageViewDTO.class);
+                    return productHomePageViewDTO;
+                })
+                .collect(Collectors.toList());
+
     }
 }

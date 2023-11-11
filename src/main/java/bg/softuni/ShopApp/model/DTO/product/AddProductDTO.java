@@ -3,6 +3,7 @@ package bg.softuni.ShopApp.model.DTO.product;
 import bg.softuni.ShopApp.model.entity.enums.Category;
 import bg.softuni.ShopApp.model.entity.enums.Location;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
@@ -15,7 +16,7 @@ public class AddProductDTO {
     @NotBlank(message = "Моля въведете описание!")
     private String description;
 
-    @NotBlank(message = "Моля Въведете цена!")
+    @NotNull(message = "Моля Въведете цена!")
     @Positive(message = "Цената не може да бъде отрицателна!")
     private BigDecimal price;
     private Category category;

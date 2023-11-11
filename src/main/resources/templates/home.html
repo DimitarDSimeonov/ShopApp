@@ -17,6 +17,27 @@
         <div class="jumbotron">
             <h1>Моите обяви:</h1>
 
+            <table th:if="${#arrays.length(myOffers)} != 0" class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Заглавие</th>
+                    <th>Цена</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="o : ${myOffers}" th:object="${o}">
+                    <td th:text="*{title}">John</td>
+                    <td th:text="*{price}">Doe</td>
+                    <td>
+                        <form th:method="delete" th:action="@{/products/delete/{id}(id = *{id})}">
+                            <input type="submit" th:value="Изтрий" class="btn btn-link nav-link text-danger">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
 </main>

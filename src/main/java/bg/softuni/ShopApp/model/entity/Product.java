@@ -36,6 +36,9 @@ public class Product extends BaseEntity{
     @OneToOne(mappedBy = "product")
     private Picture picture;
 
+    @ManyToOne
+    private User seller;
+
     public Product() {
     }
 
@@ -101,5 +104,13 @@ public class Product extends BaseEntity{
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
     }
 }
