@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,13 +34,14 @@ public class Product extends BaseEntity{
     @OneToMany(mappedBy = "product")
     private List<Comment> comments;
 
-    @OneToOne(mappedBy = "product")
-    private Picture picture;
+    @OneToMany(mappedBy = "product")
+    private List<Picture> pictures;
 
     @ManyToOne
     private User seller;
 
     public Product() {
+        pictures = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -90,12 +92,12 @@ public class Product extends BaseEntity{
         this.comments = comments;
     }
 
-    public Picture getPicture() {
-        return picture;
+    public List<Picture> getPicture() {
+        return pictures;
     }
 
-    public void setPicture(Picture picture) {
-        this.picture = picture;
+    public void setPicture(List<Picture> pictures) {
+        this.pictures = pictures;
     }
 
     public BigDecimal getPrice() {

@@ -8,6 +8,16 @@
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+        input[type=number] {
+        -moz-appearance: textfield;
+        }
+</style>
 </head>
 <body>
 <header>
@@ -17,6 +27,16 @@
     <div class="container">
         <div class="jumbotron">
             <h1>Добави обява:</h1>
+
+            <form action="#" th:action="@{/upload}" th:method="post" enctype="multipart/form-data">
+                <input type="file" name="image" placeholder="Избери снимка">
+                <input type="submit" value="Добави">
+            </form>
+            <div class="row">
+                <div th:each="u : ${addProductDTO.picturesURL}" th:objet="${u}" class="column">
+                    <img th:src="@{${u}}" alt="Nature" style="width:100%" >
+                </div>
+            </div>
 
             <form th:object="${addProductDTO}" th:method="post" th:action="@{/products/add}">
                 <div class="form-group">
@@ -32,7 +52,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="price">Цена</label>
-                        <input th:field="*{price}" type="text" name="price" id="price" class="form-control" aria-describedby="inputGroupPrepend3" required>
+                        <input th:field="*{price}" type="number" name="price" id="price" class="form-control" aria-describedby="inputGroupPrepend3" required>
                         <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></div>
                     </div>
                 </div>

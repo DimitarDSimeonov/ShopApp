@@ -27,6 +27,11 @@ public class ProductController {
         if (!model.containsAttribute("addProductDTO")) {
             model.addAttribute("addProductDTO", new AddProductDTO());
         }
+
+        AddProductDTO addProductDTO = (AddProductDTO) model.getAttribute("addProductDTO");
+        addProductDTO.getPicturesURL().add((String) model.getAttribute("url"));
+
+        model.addAttribute("addProductDTO", addProductDTO);
         return "product-add";
     }
 
