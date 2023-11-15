@@ -20,4 +20,9 @@ public class PictureServiceImpl implements PictureService {
         picture.setURL(url);
         pictureRepository.save(picture);
     }
+
+    @Override
+    public Picture getPictureByURL(String pictureURL) {
+        return pictureRepository.findByURL(pictureURL);
+    }
 }

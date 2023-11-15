@@ -2,13 +2,12 @@ package bg.softuni.ShopApp.service.impl;
 
 import bg.softuni.ShopApp.service.PictureService;
 import bg.softuni.ShopApp.service.PictureUploadService;
-import com.cloudinary.Cloudinary;
+import com.cloudinary.*;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -27,7 +26,7 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 
         String url = cloudinary.uploader()
                 .upload(multipartFile.getBytes(),//ToDo make signature
-                        Map.of("public_id", UUID.randomUUID().toString()))
+                        ObjectUtils.asMap("public_id", UUID.randomUUID().toString()))
                 .get("url")
                 .toString();
 

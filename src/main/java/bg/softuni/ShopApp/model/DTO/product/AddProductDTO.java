@@ -7,8 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddProductDTO {
 
@@ -23,10 +21,9 @@ public class AddProductDTO {
     private BigDecimal price;
     private Category category;
     private Location location;
-    private List<String> picturesURL;
+    private String pictureURL;
 
     public AddProductDTO() {
-        picturesURL = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -69,11 +66,11 @@ public class AddProductDTO {
         this.price = price;
     }
 
-    public List<String> getPicturesURL() {
-        return picturesURL;
+    public String getPictureURL() {
+        return pictureURL;
     }
 
-    public void setPicturesURL(List<String> picturesURL) {
-        this.picturesURL = picturesURL;
+    public void setPicturesURL(String picturesURL) {
+        this.pictureURL = picturesURL;
     }
 }

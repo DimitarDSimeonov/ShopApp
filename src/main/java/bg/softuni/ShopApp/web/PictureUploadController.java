@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 
@@ -20,11 +21,11 @@ public class PictureUploadController {
 
 
     @PostMapping("/upload")
-    public String upload(@RequestParam("image")MultipartFile multipartFile, Model model) throws IOException {
+    public String upload(@RequestParam("image")MultipartFile multipartFile, RedirectAttributes redirectAttributes) throws IOException {
 
         String url = pictureUploadService.uploadFile(multipartFile);
 
-        model.addAttribute("url", url);
+        redirectAttributes.addFlashAttribute("url", url);
 
         return "redirect:/products/add";
     }

@@ -1,8 +1,10 @@
 package bg.softuni.ShopApp.service.impl;
 
 import bg.softuni.ShopApp.model.DTO.product.AddProductDTO;
+import bg.softuni.ShopApp.model.entity.Picture;
 import bg.softuni.ShopApp.model.entity.Product;
 import bg.softuni.ShopApp.repository.ProductRepository;
+import bg.softuni.ShopApp.service.PictureService;
 import bg.softuni.ShopApp.service.ProductService;
 import bg.softuni.ShopApp.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -16,11 +18,13 @@ public class ProductServiceImpl implements ProductService {
     private final UserService userService;
     private final ModelMapper modelMapper;
     private final ProductRepository productRepository;
+    private final PictureService pictureService;
 
-    public ProductServiceImpl(UserService userService, ModelMapper modelMapper, ProductRepository productRepository) {
+    public ProductServiceImpl(UserService userService, ModelMapper modelMapper, ProductRepository productRepository, PictureService pictureService) {
         this.userService = userService;
         this.modelMapper = modelMapper;
         this.productRepository = productRepository;
+        this.pictureService = pictureService;
     }
 
     @Override
@@ -29,6 +33,7 @@ public class ProductServiceImpl implements ProductService {
         product.setDateOfPost(LocalDateTime.now());
 
         product.setSeller(userService.getByUsername(username));
+
 
         productRepository.save(product);
     }

@@ -9,7 +9,7 @@ public class Picture extends BaseEntity{
     @Column(name = "url", nullable = false)
     private String URL;
 
-    @OneToOne
+    @ManyToOne
     private Product product;
 
     @OneToOne

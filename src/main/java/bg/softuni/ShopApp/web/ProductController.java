@@ -28,17 +28,21 @@ public class ProductController {
             model.addAttribute("addProductDTO", new AddProductDTO());
         }
 
-        AddProductDTO addProductDTO = (AddProductDTO) model.getAttribute("addProductDTO");
-        addProductDTO.getPicturesURL().add((String) model.getAttribute("url"));
+        if (model.containsAttribute("url")) {
+            AddProductDTO addProductDTO = (AddProductDTO) model.getAttribute("addProductDTO");
+            addProductDTO.setPicturesURL((String) model.getAttribute("url"));
+            model.addAttribute("addProductDTO", addProductDTO);
+        }
 
-        model.addAttribute("addProductDTO", addProductDTO);
+
         return "product-add";
     }
 
     @PostMapping("/add")
     public String addProductConfirm(@Valid AddProductDTO addProductDTO,
                                     BindingResult bindingResult,
-                                    RedirectAttributes redirectAttributes) {
+                                    RedirectAttributes redirectAttributes,
+                                    Model model) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("addProductDTO", addProductDTO);
@@ -48,6 +52,10 @@ public class ProductController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
+
+        if (model.containsAttribute("url")) {
+            addProductDTO.setPicturesURL((String) model.getAttribute("url"));
+        }
 
         productService.createProduct(addProductDTO, username);
 
