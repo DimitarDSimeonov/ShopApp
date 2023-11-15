@@ -34,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
 
         product.setSeller(userService.getByUsername(username));
 
+        product.getPicture().add(pictureService.getPictureByURL(addProductDTO.getPictureURL()));
 
         productRepository.save(product);
     }

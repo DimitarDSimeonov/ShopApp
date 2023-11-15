@@ -28,17 +28,19 @@
         <div class="jumbotron">
             <h1>Добави обява:</h1>
 
-            <form th:if="${addProductDTO.pictureURL} == null" action="#" th:action="@{/upload}" th:method="post" enctype="multipart/form-data">
+            <form th:if="${url} == null" action="#" th:action="@{/upload}" th:method="post" enctype="multipart/form-data">
                 <input type="file" name="image" placeholder="Избери снимка">
                 <input type="submit" value="Добави">
             </form>
+            <img th:src="@{${url}}" id="picture" style="width:100%" >
 
 
             <form th:object="${addProductDTO}" th:method="post" th:action="@{/products/add}">
                 <div class="row">
                     <div  class="column">
                         <label for="pictureURL"></label>
-                        <img th:field="*{pictureURL}" th:src="@{*{pictureURL}}" th:value="*{pictureURL}" id="pictureURL" name="pictureURL" style="width:100%" >
+                        <input th:field="*{pictureURL}" th:value="${url}" type="text" name="pictureURL" id="pictureURL" class="form-control">
+
                     </div>
                 </div>
                 <div class="form-group">
