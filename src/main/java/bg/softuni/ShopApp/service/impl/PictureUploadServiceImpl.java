@@ -25,7 +25,7 @@ public class PictureUploadServiceImpl implements PictureUploadService {
     public String uploadFile(MultipartFile multipartFile) throws IOException {
 
         String url = cloudinary.uploader()
-                .upload(multipartFile.getBytes(),//ToDo make signature
+                .upload(multipartFile.getBytes(),
                         ObjectUtils.asMap("public_id", UUID.randomUUID().toString()))
                 .get("url")
                 .toString();

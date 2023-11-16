@@ -34,7 +34,7 @@ public class Product extends BaseEntity{
     @OneToMany(mappedBy = "product")
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Picture> pictures;
 
     @ManyToOne
@@ -92,11 +92,11 @@ public class Product extends BaseEntity{
         this.comments = comments;
     }
 
-    public List<Picture> getPicture() {
+    public List<Picture> getPictures() {
         return pictures;
     }
 
-    public void setPicture(List<Picture> pictures) {
+    public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
     }
 

@@ -1,6 +1,7 @@
 package bg.softuni.ShopApp.service.impl;
 
 import bg.softuni.ShopApp.model.DTO.product.AddProductDTO;
+import bg.softuni.ShopApp.model.DTO.product.ProductOwnerViewDTO;
 import bg.softuni.ShopApp.model.entity.Picture;
 import bg.softuni.ShopApp.model.entity.Product;
 import bg.softuni.ShopApp.repository.ProductRepository;
@@ -18,29 +19,41 @@ public class ProductServiceImpl implements ProductService {
     private final UserService userService;
     private final ModelMapper modelMapper;
     private final ProductRepository productRepository;
-    private final PictureService pictureService;
 
-    public ProductServiceImpl(UserService userService, ModelMapper modelMapper, ProductRepository productRepository, PictureService pictureService) {
+
+    public ProductServiceImpl(UserService userService, ModelMapper modelMapper, ProductRepository productRepository) {
         this.userService = userService;
         this.modelMapper = modelMapper;
         this.productRepository = productRepository;
-        this.pictureService = pictureService;
     }
 
     @Override
-    public void createProduct(AddProductDTO addProductDTO, String username) {
+    public Long createProduct(AddProductDTO addProductDTO, String username) {
         Product product = modelMapper.map(addProductDTO, Product.class);
         product.setDateOfPost(LocalDateTime.now());
 
         product.setSeller(userService.getByUsername(username));
 
-        product.getPicture().add(pictureService.getPictureByURL(addProductDTO.getPictureURL()));
+        product = productRepository.saveAndFlush(product);
 
-        productRepository.save(product);
+        return product.getId();
     }
 
     @Override
     public void removeById(Long id) {
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public ProductOwnerViewDTO getOwnerViewById(Long id) {
+        return productRepository.findById(id)
+                .map(product ->modelMapper.map(product, ProductOwnerViewDTO.class))
+                .get();
+    }
+
+
+    @Override
+    public Product getById(Long id) {
+        return productRepository.findById(id).get();
     }
 }

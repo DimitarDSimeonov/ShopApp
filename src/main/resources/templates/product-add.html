@@ -36,13 +36,6 @@
 
 
             <form th:object="${addProductDTO}" th:method="post" th:action="@{/products/add}">
-                <div class="row">
-                    <div  class="column">
-                        <label for="pictureURL"></label>
-                        <input th:field="*{pictureURL}" th:value="${url}" type="text" name="pictureURL" id="pictureURL" class="form-control">
-
-                    </div>
-                </div>
                 <div class="form-group">
                     <div class="col-md-4 mb-3">
                         <label for="title">Заглавие</label>

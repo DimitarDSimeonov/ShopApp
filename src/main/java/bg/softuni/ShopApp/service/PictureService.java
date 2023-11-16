@@ -9,4 +9,5 @@ public interface PictureService {
 
     Picture getPictureByURL(String pictureURL);
 
+    void setProduct(Long id, String url);
 }
