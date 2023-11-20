@@ -1,9 +1,19 @@
 package bg.softuni.ShopApp.model.entity.enums;
 
 public enum Category {
-    VEHICLE,
-    ELECTRONIC,
-    ESTATE,
-    CLOTHING,
-    OTHER
+    VEHICLE("Превозни средства"),
+    ELECTRONIC("Електроника"),
+    ESTATE("Имоти"),
+    CLOTHING("Облекло"),
+    OTHER("Други");
+
+    private String displayName;
+
+    Category(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
 }

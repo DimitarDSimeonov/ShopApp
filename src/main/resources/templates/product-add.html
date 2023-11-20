@@ -28,13 +28,6 @@
         <div class="jumbotron">
             <h1>Добави обява:</h1>
 
-            <form th:if="${url} == null" action="#" th:action="@{/upload}" th:method="post" enctype="multipart/form-data">
-                <input type="file" name="image" placeholder="Избери снимка">
-                <input type="submit" value="Добави">
-            </form>
-            <img th:src="@{${url}}" id="picture" style="width:100%" >
-
-
             <form th:object="${addProductDTO}" th:method="post" th:action="@{/products/add}">
                 <div class="form-group">
                     <div class="col-md-4 mb-3">
@@ -64,13 +57,9 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="category">Категория</label>
-                        <select th:field="*{category}" type="text" name="category" id="category" class="form-control">
+                        <select th:field="*{category}" name="category" id="category" class="form-control">
                             <option value="">Изерете категория</option>
-                            <option value="VEHICLE">Превозни средства</option>
-                            <option value="ELECTRONIC">Електроника</option>
-                            <option value="ESTATE">Имоти</option>
-                            <option value="CLOTHING">Облекло</option>
-                            <option value="OTHER">Други</option>
+                            <option th:each="c : ${T(bg.softuni.ShopApp.model.entity.enums.Category).values()}" th:value="${c}" th:text="${c.displayName}">Превозни средства</option>
                         </select>
                         <div th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger"></div>
                     </div>

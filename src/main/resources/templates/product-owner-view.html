@@ -8,6 +8,60 @@
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The expanding image container */
+.container-img {
+  position: relative;
+  display: none;
+}
+
+/* Expanding image text */
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+/* Closable button inside the expanded image */
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+</style>
 </head>
 <body>
 <header>
@@ -17,7 +71,6 @@
     <div class="container">
         <div class="jumbotron">
             <h1>Добави снимка:</h1>
-
 
             <form th:object="${view}" th:method="post" th:action="@{/products/add/owner/view/{id}(id = *{id})}" enctype="multipart/form-data">
                 <div class="form-group">
@@ -36,19 +89,50 @@
                         <p th:text="*{location}"></p>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <p th:text="*{category}"></p>
+                        <p th:text="*{category.displayName}"></p>
                     </div>
                 </div>
-                <div th:each="p : *{pictures}" th:object="${p}" class="form-group">
-                    <img th:src="@{*{URL}}">
+                <div class="row">
+                    <div th:each="p : *{pictures}" th:object="${p}" class="column">
+                        <img th:src="@{*{URL}}" style="width:100%" onclick="myFunction(this);">
+                    </div>
                 </div>
-                <input type="file" name="image" placeholder="Избери снимка">
-                <button class="btn btn-secondary" type="submit">Качи</button>
+
+                <div class="container-img">
+                    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+                    <img id="expandedImg" style="width:100%">
+                </div>
+
+                <ul class="nav nav-bar justify-content-between">
+                    <li class="nav-item">
+                        <button style="cursor:pointer" id="btn" class="btn btn-secondary">Избери снимка</button>
+                        <input type="file" id="input" name="image" style="display:none" required>
+                    </li>
+                    <li class="nav-item">
+                        <input type="submit" class="btn btn-secondary" value="Качи"/>
+                    </li>
+                    <li>
+                        <a th:href="@{/home}" class="btn btn-success">Готово</a>
+                    </li>
+                </ul>
             </form>
 
         </div>
     </div>
 </main>
 <footer th:replace="~{fragments/common::footer}"></footer>
+
+<script>
+function myFunction(imgs) {
+  var expandImg = document.getElementById("expandedImg");
+  expandImg.src = imgs.src;
+  expandImg.parentElement.style.display = "block";
+}
+</script>
+<script>
+document.getElementById('btn').addEventListener('click', () => {
+  document.getElementById('input').click();
+})
+</script>
 </body>
 </html>
