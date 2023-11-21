@@ -2,16 +2,18 @@ package bg.softuni.ShopApp.service.impl;
 
 import bg.softuni.ShopApp.model.DTO.product.AddProductDTO;
 import bg.softuni.ShopApp.model.DTO.product.ProductOwnerViewDTO;
-import bg.softuni.ShopApp.model.entity.Picture;
+import bg.softuni.ShopApp.model.DTO.product.ProductSearchDTO;
+import bg.softuni.ShopApp.model.DTO.product.ProductViewDTO;
 import bg.softuni.ShopApp.model.entity.Product;
 import bg.softuni.ShopApp.repository.ProductRepository;
-import bg.softuni.ShopApp.service.PictureService;
 import bg.softuni.ShopApp.service.ProductService;
 import bg.softuni.ShopApp.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -55,5 +57,20 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getById(Long id) {
         return productRepository.findById(id).get();
+    }
+
+    @Override
+    public List<ProductViewDTO> searchByInput(ProductSearchDTO productSearchDTO) {
+        if (productSearchDTO.getTitle().isBlank()) {
+            productSearchDTO.setTitle(null);
+        }
+        return productRepository.findBySearchingInput(productSearchDTO.getTitle(), productSearchDTO.getMaxPrice(),
+                productSearchDTO.getLocation(), productSearchDTO.getCategory())
+                .stream()
+                .map(product -> {
+                    ProductViewDTO productViewDTO = modelMapper.map(product, ProductViewDTO.class);
+                    return productViewDTO;
+                })
+                .collect(Collectors.toList());
     }
 }
