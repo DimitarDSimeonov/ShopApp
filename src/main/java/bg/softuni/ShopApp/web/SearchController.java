@@ -34,7 +34,8 @@ public class SearchController {
     @PostMapping("/search")
     public String searchConfirm(@Valid ProductSearchDTO productSearchDTO,
                                 BindingResult bindingResult,
-                                RedirectAttributes redirectAttributes) {
+                                RedirectAttributes redirectAttributes,
+                                Model model) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("productSearchDTO", productSearchDTO);
@@ -44,7 +45,8 @@ public class SearchController {
 
         List<ProductViewDTO> products = productService.searchByInput(productSearchDTO);
 
-        //ToDo: Create view page
-        return "redirect:/home";
+        model.addAttribute("products", products);
+
+        return "product-search-result";
     }
 }

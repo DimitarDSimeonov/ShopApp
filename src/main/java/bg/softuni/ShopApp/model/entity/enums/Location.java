@@ -257,3 +257,4 @@ public enum Location {
     Маджарово,
     Мелник
 }
+//ToDo: Create latin value and bulgarian display name!!!!!

@@ -64,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
         if (productSearchDTO.getTitle().isBlank()) {
             productSearchDTO.setTitle(null);
         }
-        return productRepository.findBySearchingInput(productSearchDTO.getTitle(), productSearchDTO.getMaxPrice(),
+        return productRepository.findByTitleContainingAndPriceLessThanAndLocationAndCategory(productSearchDTO.getTitle(), productSearchDTO.getMaxPrice(),
                 productSearchDTO.getLocation(), productSearchDTO.getCategory())
                 .stream()
                 .map(product -> {

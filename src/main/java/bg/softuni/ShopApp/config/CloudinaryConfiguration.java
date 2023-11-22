@@ -11,7 +11,7 @@ public class CloudinaryConfiguration {
 
     private final String CLOUD_NAME = "dhkodgkzy";
     private final String API_KEY = "144849744445361";
-    private final String API_SECRET = "Mj3TWJkjJqVKsb2LULpJDT9vbCk";
+    private final String API_SECRET = System.getenv("CLOUDINARY_SECRET");
 
     @Bean
     public Cloudinary cloudinary() {
