@@ -50,3 +50,4 @@ public class SearchController {
         return "product-search-result";
     }
 }
+//ToDo: Create searching in title case insensitive!

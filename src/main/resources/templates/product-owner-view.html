@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -8,60 +8,7 @@
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
-* {
-  box-sizing: border-box;
-}
-
-/* The grid: Four equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 25%;
-  padding: 10px;
-}
-
-/* Style the images inside the grid */
-.column img {
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-.column img:hover {
-  opacity: 1;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* The expanding image container */
-.container-img {
-  position: relative;
-  display: none;
-}
-
-/* Expanding image text */
-#imgtext {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  color: white;
-  font-size: 20px;
-}
-
-/* Closable button inside the expanded image */
-.closebtn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  color: white;
-  font-size: 35px;
-  cursor: pointer;
-}
-</style>
+    <link href="/css/galleryStyles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <header>
@@ -92,16 +39,8 @@
                         <p th:text="*{category.displayName}"></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div th:each="p : *{pictures}" th:object="${p}" class="column">
-                        <img th:src="@{*{URL}}" style="width:100%" onclick="myFunction(this);">
-                    </div>
-                </div>
 
-                <div class="container-img">
-                    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-                    <img id="expandedImg" style="width:100%">
-                </div>
+                <div th:replace="~{fragments/common::gallery}"></div>
 
                 <ul class="nav nav-bar justify-content-between">
                     <li class="nav-item">
@@ -122,13 +61,7 @@
 </main>
 <footer th:replace="~{fragments/common::footer}"></footer>
 
-<script>
-function myFunction(imgs) {
-  var expandImg = document.getElementById("expandedImg");
-  expandImg.src = imgs.src;
-  expandImg.parentElement.style.display = "block";
-}
-</script>
+<script src="/js/productGallery.js"></script>
 <script>
 document.getElementById('btn').addEventListener('click', () => {
   document.getElementById('input').click();

@@ -18,4 +18,6 @@ public interface ProductService {
     Product getById(Long id);
 
     List<ProductViewDTO> searchByInput(ProductSearchDTO productSearchDTO);
+
+    ProductViewDTO getDetailsViewById(Long id);
 }

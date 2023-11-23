@@ -53,6 +53,20 @@
         </ul>
     </div>
 </nav>
+
+<div th:fragment="gallery">
+    <div class="row">
+        <div th:each="p : *{pictures}" th:object="${p}" class="column">
+            <img th:src="@{*{URL}}" style="width:100%" onclick="showInGallery(this);">
+        </div>
+    </div>
+
+    <div class="container-img">
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+        <img id="expandedImg" style="width:100%">
+    </div>
+</div>
+
 <footer th:fragment="footer" class="nav nav-bar bg-secondary">
     <p class="text-white bg-secondary">dfgsdsdg</p>
 </footer>

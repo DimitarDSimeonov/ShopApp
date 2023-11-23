@@ -73,4 +73,15 @@ public class ProductServiceImpl implements ProductService {
                 })
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public ProductViewDTO getDetailsViewById(Long id) {
+        return productRepository
+                .findById(id)
+                .map(product ->
+            modelMapper.map(product, ProductViewDTO.class)
+        )
+                .get();
+    }
 }
+//ToDo: change text view in html!

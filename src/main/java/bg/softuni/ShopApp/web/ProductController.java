@@ -1,6 +1,7 @@
 package bg.softuni.ShopApp.web;
 
 import bg.softuni.ShopApp.model.DTO.product.AddProductDTO;
+import bg.softuni.ShopApp.model.DTO.product.ProductViewDTO;
 import bg.softuni.ShopApp.service.PictureService;
 import bg.softuni.ShopApp.service.PictureUploadService;
 import bg.softuni.ShopApp.service.ProductService;
@@ -85,5 +86,14 @@ public class ProductController {
         pictureService.setProduct(id, url);
 
         return "redirect:/products/add/owner/view/" + id;
+    }
+
+    @GetMapping("/view/{id}")
+    public String productDetails(@PathVariable Long id, Model model) {
+
+        ProductViewDTO productViewDTO = productService.getDetailsViewById(id);
+
+        model.addAttribute("product", productViewDTO);
+        return "product-details-view";
     }
 }
