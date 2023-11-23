@@ -51,7 +51,7 @@
                         <label for="location">Локация</label>
                         <select th:field="*{location}"  name="location" id="location" class="form-control">
                             <option value="">Изберете локация</option>
-                            <option th:each="l : ${T(bg.softuni.ShopApp.model.entity.enums.Location).values()}" th:value="${l}" th:text="${l}">Изберете локация</option>
+                            <option th:each="l : ${T(bg.softuni.ShopApp.model.entity.enums.Location).values()}" th:value="${l}" th:text="${l.displayName}">Изберете локация</option>
                         </select>
                         <div th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="text-danger"></div>
                     </div>

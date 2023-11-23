@@ -41,7 +41,7 @@
                 <td th:text="*{title}">John</td>
                 <td th:text="*{price}">Doe</td>
                 <td th:text="*{category.displayName}"></td>
-                <td th:text="*{location}"></td>
+                <td th:text="*{location.displayName}"></td>
                 <td>
                     <form th:method="get" th:action="@{/products/view/{id}(id = *{id})}">
                         <input type="submit" th:value="|Виж повече|" class="btn btn-link nav-link text-secondary">
