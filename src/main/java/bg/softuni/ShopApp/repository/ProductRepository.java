@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findByTitleContainingAndPriceLessThanAndLocationAndCategory(String title, BigDecimal price, Location location, Category category);
+    List<Product> findByTitleContainingIgnoreCaseAndPriceLessThanEqualAndLocationAndCategory(String title, BigDecimal price, Location location, Category category);
 }
 //ToDo: Create query with var args...
 
