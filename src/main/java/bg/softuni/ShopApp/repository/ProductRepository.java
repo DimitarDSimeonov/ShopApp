@@ -9,11 +9,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    Optional<List<Product>> findAllByDateOfPostBefore(LocalDateTime localDateTime);
 
     List<Product> findByTitleContainingIgnoreCaseAndPriceLessThanEqualAndLocationAndCategory(String title, BigDecimal price, Location location, Category category);
 }

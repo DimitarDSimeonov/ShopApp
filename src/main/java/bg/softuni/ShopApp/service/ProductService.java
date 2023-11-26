@@ -20,4 +20,6 @@ public interface ProductService {
     List<ProductViewDTO> searchByInput(ProductSearchDTO productSearchDTO);
 
     ProductViewDTO getDetailsViewById(Long id);
+
+    void clearOldProduct();
 }

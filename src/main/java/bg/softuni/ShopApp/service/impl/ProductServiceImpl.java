@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,5 +84,15 @@ public class ProductServiceImpl implements ProductService {
         )
                 .get();
     }
+
+    @Override
+    public void clearOldProduct() {
+
+        List<Product> oldProduct = productRepository.findAllByDateOfPostBefore(LocalDateTime.now().minusMonths(1)).orElse(new ArrayList<>());
+
+        if (oldProduct.size() > 0) {
+            productRepository.deleteAll(oldProduct);
+        }
+    }
 }
-//ToDo: change text view in html!
+//ToDo: change text with details view in html!
