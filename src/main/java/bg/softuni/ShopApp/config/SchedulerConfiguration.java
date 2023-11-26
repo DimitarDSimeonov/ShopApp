@@ -15,7 +15,7 @@ public class SchedulerConfiguration {
         this.productService = productService;
     }
 
-    @Scheduled(cron = "0 0 * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     public void clearOldProduct() {
         productService.clearOldProduct();
     }
