@@ -1,11 +1,14 @@
 package bg.softuni.ShopApp.web;
 
+import bg.softuni.ShopApp.model.DTO.comment.CommentAddDTO;
 import bg.softuni.ShopApp.model.DTO.product.AddProductDTO;
 import bg.softuni.ShopApp.model.DTO.product.ProductViewDTO;
+import bg.softuni.ShopApp.service.CommentService;
 import bg.softuni.ShopApp.service.PictureService;
 import bg.softuni.ShopApp.service.PictureUploadService;
 import bg.softuni.ShopApp.service.ProductService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/products")
@@ -24,11 +28,13 @@ public class ProductController {
     private final ProductService productService;
     private final PictureUploadService pictureUploadService;
     private final PictureService pictureService;
+    private final CommentService commentService;
 
-    public ProductController(ProductService productService, PictureUploadService pictureUploadService, PictureService pictureService) {
+    public ProductController(ProductService productService, PictureUploadService pictureUploadService, PictureService pictureService, CommentService commentService) {
         this.productService = productService;
         this.pictureUploadService = pictureUploadService;
         this.pictureService = pictureService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/add")
@@ -94,6 +100,15 @@ public class ProductController {
         ProductViewDTO productViewDTO = productService.getDetailsViewById(id);
 
         model.addAttribute("product", productViewDTO);
+        model.addAttribute("commentAddDTO", new CommentAddDTO());
         return "product-details-view";
+    }
+
+    @PostMapping("/view/{id}")
+    public String addCommentConfirm(@PathVariable("id") Long id, CommentAddDTO commentAddDTO, Principal principal) {
+
+        commentService.createComment(commentAddDTO, id, principal.getName());
+
+        return "redirect:/products/view/" + id;
     }
 }

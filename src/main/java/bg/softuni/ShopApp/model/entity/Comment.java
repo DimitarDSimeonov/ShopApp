@@ -19,6 +19,9 @@ public class Comment extends BaseEntity{
     @ManyToOne
     private Product product;
 
+    @ManyToOne
+    private User author;
+
     public Comment() {
     }
 
@@ -44,5 +47,17 @@ public class Comment extends BaseEntity{
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public String getAuthorFullName() {
+        return author.getFirstName() + " " + author.getLastName();
     }
 }

@@ -20,6 +20,7 @@
         <div th:object="${product}" class="jumbotron">
 
             <h1 th:text="*{title}"></h1>
+            <p id="id" style="display:none" th:text="*{id}"></p>
 
             <div th:replace="~{fragments/common::gallery}"></div>
 
@@ -44,6 +45,18 @@
                         <p th:text="|Продавач: *{seller.firstName} *{seller.lastName} телефон: *{seller.phoneNumber}|"></p>
                     </div>
                 </div>
+            <button id="showComment" class="btn btn-link text-secondary">Покажи коментарите</button>
+            <div id="comments">
+
+            </div>
+            <form id="addComment" style="display:none" th:method="post" th:action="@{/products/view/{id} (id = ${product.id})}" th:object="${commentAddDTO}">
+                <div class="col-md-4 mb-3">
+                    <label for="content">Добави коментар</label>
+                    <textarea th:field="*{content}" type="text" name="content" id="content" class="form-control" required></textarea>
+                    <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger"></div>
+                </div>
+                <button class="btn btn-secondary" type="submit">Добави коментар</button>
+            </form>
         </div>
     </div>
 </main>
@@ -51,5 +64,6 @@
 <footer th:replace="~{fragments/common::footer}"></footer>
 
 <script src="/js/productGallery.js"></script>
+<script src="/js/comments.js"></script>
 </body>
 </html>
