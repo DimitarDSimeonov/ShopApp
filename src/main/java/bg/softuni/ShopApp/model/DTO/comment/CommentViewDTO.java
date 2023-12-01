@@ -2,10 +2,19 @@ package bg.softuni.ShopApp.model.DTO.comment;
 
 public class CommentViewDTO {
 
+    private Long id;
     private String content;
     private String author;
 
     public CommentViewDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getContent() {

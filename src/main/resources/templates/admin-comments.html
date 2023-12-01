@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/common::head}">
+</head>
+<body>
+<header>
+    <nav th:replace="~{fragments/common::navbar}"></nav>
+</header>
+
+<main>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Моите обяви:</h1>
+
+            <table th:if="${#arrays.length(comments)} != 0" class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Автор</th>
+                    <th>Коментар</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c : ${comments}" th:object="${c}">
+                    <td th:text="*{author}">John</td>
+                    <td th:text="*{content}">Doe</td>
+                    <td>
+                        <form th:method="delete" th:action="@{/admin/comment/delete/{id}(id = *{id})}">
+                            <input type="submit" th:value="Изтрий" class="btn btn-link nav-link text-danger">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/common::footer}"></footer>
+</body>
+</html>

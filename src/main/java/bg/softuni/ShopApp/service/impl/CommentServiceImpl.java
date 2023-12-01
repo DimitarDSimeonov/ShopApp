@@ -50,5 +50,18 @@ public class CommentServiceImpl implements CommentService {
                 })
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<CommentViewDTO> getAllComments() {
+        return commentRepository
+                .findAll()
+                .stream()
+                .map(comment -> modelMapper.map(comment, CommentViewDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        commentRepository.deleteById(id);
+    }
 }
-//ToDo:Create comments
