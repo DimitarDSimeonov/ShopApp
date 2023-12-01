@@ -22,4 +22,6 @@ public interface ProductService {
     ProductViewDTO getDetailsViewById(Long id);
 
     void clearOldProduct();
+
+    List<ProductViewDTO> getLastProducts();
 }

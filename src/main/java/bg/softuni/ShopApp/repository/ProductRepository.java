@@ -20,6 +20,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<List<Product>> findAllByDateOfPostBefore(LocalDateTime localDateTime);
 
     List<Product> findByTitleContainingIgnoreCaseAndPriceLessThanEqualAndLocationAndCategory(String title, BigDecimal price, Location location, Category category);
+
+    @Query("SELECT p FROM Product p ORDER BY p.dateOfPost DESC LIMIT 10")
+    List<Product> findTop10OrderByDateOfPostDesc();
 }
 //ToDo: Create query with var args...
 

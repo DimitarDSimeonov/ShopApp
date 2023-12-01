@@ -1,5 +1,6 @@
 package bg.softuni.ShopApp.web;
 
+import bg.softuni.ShopApp.service.ProductService;
 import bg.softuni.ShopApp.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,14 +12,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     private final UserService userService;
+    private final ProductService productService;
 
-    public HomeController(UserService userService) {
+    public HomeController(UserService userService, ProductService productService) {
         this.userService = userService;
+        this.productService = productService;
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
 
+        model.addAttribute("lastOffers", productService.getLastProducts());
         return "index";
     }
 

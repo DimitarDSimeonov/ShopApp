@@ -94,5 +94,15 @@ public class ProductServiceImpl implements ProductService {
             productRepository.deleteAll(oldProduct);
         }
     }
+
+    @Override
+    public List<ProductViewDTO> getLastProducts() {
+        return productRepository
+                .findTop10OrderByDateOfPostDesc()
+                .stream()
+                .map(product ->
+                    modelMapper.map(product, ProductViewDTO.class)
+                ).collect(Collectors.toList());
+    }
 }
 //ToDo: change text with details view in html!

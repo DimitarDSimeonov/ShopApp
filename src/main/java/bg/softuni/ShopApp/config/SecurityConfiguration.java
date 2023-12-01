@@ -18,7 +18,7 @@ public class SecurityConfiguration {
         authorizeRequest ->
                authorizeRequest
                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-               .requestMatchers("/", "/users/register", "/users/login", "users/login-error", "/comments/view/*").permitAll()
+               .requestMatchers("/", "/users/register", "/users/login", "users/login-error", "/products/view/*").permitAll()
                .anyRequest().authenticated()
                //ToDo make other link
         ).formLogin(
@@ -27,7 +27,7 @@ public class SecurityConfiguration {
                           .loginPage("/users/login")
                           .usernameParameter("username")
                           .passwordParameter("password")
-                          .defaultSuccessUrl("/home", true)
+                          .defaultSuccessUrl("/", true)
                           .failureForwardUrl("/users/login-error")
         ).logout(
                logout ->

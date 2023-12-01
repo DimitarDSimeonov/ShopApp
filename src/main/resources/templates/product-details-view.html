@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -45,11 +46,11 @@
                         <p th:text="|Продавач: *{seller.firstName} *{seller.lastName} телефон: *{seller.phoneNumber}|"></p>
                     </div>
                 </div>
-            <button id="showComment" class="btn btn-link text-secondary">Покажи коментарите</button>
+            <button sec:authorize="isAuthenticated()" id="showComment" class="btn btn-link text-secondary">Покажи коментарите</button>
             <div id="comments">
 
             </div>
-            <form id="addComment" style="display:none" th:method="post" th:action="@{/products/view/{id} (id = ${product.id})}" th:object="${commentAddDTO}">
+            <form  sec:authorize="isAuthenticated()" id="addComment" style="display:none" th:method="post" th:action="@{/products/view/{id} (id = ${product.id})}" th:object="${commentAddDTO}">
                 <div class="col-md-4 mb-3">
                     <label for="content">Добави коментар</label>
                     <textarea th:field="*{content}" type="text" name="content" id="content" class="form-control" required></textarea>
