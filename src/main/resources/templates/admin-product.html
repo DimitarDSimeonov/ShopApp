@@ -12,22 +12,26 @@
 <main>
     <div class="container">
         <div class="jumbotron">
-            <h1>Всички коментари:</h1>
+            <h1>Всички обяви:</h1>
 
-            <table th:if="${#arrays.length(comments)} != 0" class="table table-condensed">
+            <table th:if="${#arrays.length(products)} != 0" class="table table-condensed">
                 <thead>
                 <tr>
-                    <th>Автор</th>
-                    <th>Коментар</th>
+                    <th>Загавие</th>
+                    <th>Цена</th>
+                    <th>Локация</th>
+                    <th>Категория</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="c : ${comments}" th:object="${c}">
-                    <td th:text="*{author}">John</td>
-                    <td th:text="*{content}">Doe</td>
+                <tr th:each="p : ${products}" th:object="${p}">
+                    <td th:text="*{title}">John</td>
+                    <td th:text="*{price}">Doe</td>
+                    <td th:text="*{location.displayName}">Doe</td>
+                    <td th:text="*{category.displayName}">Doe</td>
                     <td>
-                        <form th:method="delete" th:action="@{/admin/comment/delete/{id}(id = *{id})}">
+                        <form th:method="delete" th:action="@{/admin/product/delete/{id}(id = *{id})}">
                             <input type="submit" th:value="Изтрий" class="btn btn-link nav-link text-danger">
                         </form>
                     </td>

@@ -8,7 +8,6 @@ import bg.softuni.ShopApp.service.PictureService;
 import bg.softuni.ShopApp.service.PictureUploadService;
 import bg.softuni.ShopApp.service.ProductService;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -70,7 +69,7 @@ public class ProductController {
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id) {
 
-        productService.removeById(id);
+        productService.deleteById(id);
 
         return "redirect:/home";
     }

@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void removeById(Long id) {
+    public void deleteById(Long id) {
         productRepository.deleteById(id);
     }
 
@@ -103,6 +103,14 @@ public class ProductServiceImpl implements ProductService {
                 .map(product ->
                     modelMapper.map(product, ProductViewDTO.class)
                 ).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductViewDTO> getAllProducts() {
+        return productRepository.findAll()
+                .stream()
+                .map(product -> modelMapper.map(product, ProductViewDTO.class))
+                .collect(Collectors.toList());
     }
 }
 //ToDo: change text with details view in html!

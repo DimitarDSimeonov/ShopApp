@@ -1,6 +1,7 @@
 package bg.softuni.ShopApp.web;
 
 import bg.softuni.ShopApp.service.CommentService;
+import bg.softuni.ShopApp.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 
     private final CommentService commentService;
+    private final ProductService productService;
 
-    public AdminController(CommentService commentService) {
+    public AdminController(CommentService commentService, ProductService productService) {
         this.commentService = commentService;
+        this.productService = productService;
     }
 
     @GetMapping("/comments")
@@ -32,5 +35,21 @@ public class AdminController {
         commentService.deleteById(id);
 
         return "redirect:/admin/comments";
+    }
+
+    @GetMapping("/products")
+    public String allProducts(Model model) {
+
+        model.addAttribute("products", productService.getAllProducts());
+
+        return "admin-product";
+    }
+
+    @DeleteMapping("/product/delete/{id}")
+    public String deleteProductById(@PathVariable("id") Long id) {
+
+        productService.deleteById(id);
+
+        return "redirect:/admin/products";
     }
 }

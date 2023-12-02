@@ -11,7 +11,7 @@ import java.util.List;
 public interface ProductService {
     Long createProduct(AddProductDTO addProductDTO, String username);
 
-    void removeById(Long id);
+    void deleteById(Long id);
 
     ProductOwnerViewDTO getOwnerViewById(Long id);
 
@@ -24,4 +24,6 @@ public interface ProductService {
     void clearOldProduct();
 
     List<ProductViewDTO> getLastProducts();
+
+    List<ProductViewDTO> getAllProducts();
 }
