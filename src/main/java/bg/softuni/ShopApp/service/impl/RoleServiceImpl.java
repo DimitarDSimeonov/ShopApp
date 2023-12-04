@@ -19,7 +19,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> getByName(RoleName roleName) {
+    public Role getByName(RoleName roleName) {
         return roleRepository.findByName(roleName);
     }
 

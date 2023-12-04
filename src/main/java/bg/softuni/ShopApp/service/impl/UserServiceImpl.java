@@ -2,6 +2,7 @@ package bg.softuni.ShopApp.service.impl;
 
 import bg.softuni.ShopApp.model.DTO.product.ProductHomePageViewDTO;
 import bg.softuni.ShopApp.model.DTO.user.UserRegisterDTO;
+import bg.softuni.ShopApp.model.DTO.user.UserViewDTO;
 import bg.softuni.ShopApp.model.entity.User;
 import bg.softuni.ShopApp.model.entity.enums.RoleName;
 import bg.softuni.ShopApp.repository.UserRepository;
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
 
         userRegisterDTO.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
         User user = modelMapper.map(userRegisterDTO, User.class);
-        user.setRoles(roleService.getByName(RoleName.USER));
+        user.getRoles().add(roleService.getByName(RoleName.USER));
         userRepository.save(user);
     }
 
@@ -71,11 +72,35 @@ public class UserServiceImpl implements UserService {
                 .get()
                 .getOfferProduct()
                 .stream()
-                .map(product -> {
-                    ProductHomePageViewDTO productHomePageViewDTO = modelMapper.map(product, ProductHomePageViewDTO.class);
-                    return productHomePageViewDTO;
-                })
+                .map(product ->
+                     modelMapper.map(product, ProductHomePageViewDTO.class))
                 .collect(Collectors.toList());
 
+    }
+
+    @Override
+    public List<UserViewDTO> getAllUsers(String username) {
+        return userRepository.findAllByUsernameNot(username)
+                .stream()
+                .map(user -> modelMapper.map(user, UserViewDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void addAdminRole(Long id) {
+        User user = userRepository.findById(id).get();
+
+        user.getRoles().add(roleService.getByName(RoleName.ADMIN));
+
+        userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public void removeAdminRole(Long id) {
+        User user = userRepository.findById(id).get();
+
+        user.getRoles().remove(roleService.getByName(RoleName.ADMIN));
+
+        userRepository.saveAndFlush(user);
     }
 }

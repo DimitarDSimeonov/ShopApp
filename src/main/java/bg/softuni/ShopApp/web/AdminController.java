@@ -2,12 +2,12 @@ package bg.softuni.ShopApp.web;
 
 import bg.softuni.ShopApp.service.CommentService;
 import bg.softuni.ShopApp.service.ProductService;
+import bg.softuni.ShopApp.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/admin")
@@ -15,10 +15,12 @@ public class AdminController {
 
     private final CommentService commentService;
     private final ProductService productService;
+    private final UserService userService;
 
-    public AdminController(CommentService commentService, ProductService productService) {
+    public AdminController(CommentService commentService, ProductService productService, UserService userService) {
         this.commentService = commentService;
         this.productService = productService;
+        this.userService = userService;
     }
 
     @GetMapping("/comments")
@@ -51,5 +53,29 @@ public class AdminController {
         productService.deleteById(id);
 
         return "redirect:/admin/products";
+    }
+
+    @GetMapping("/users")
+    public String allUsers(Model model, Principal principal)  {
+
+        model.addAttribute("users", userService.getAllUsers(principal.getName()));
+
+        return "admin-users";
+    }
+
+    @PutMapping("/user/add-role/{id}")
+    public String addAdminRole(@PathVariable("id") Long id) {
+
+        userService.addAdminRole(id);
+
+        return "redirect:/admin/users";
+    }
+
+    @PutMapping("/user/remove-role/{id}")
+    public String removeAdminRole(@PathVariable("id") Long id) {
+
+        userService.removeAdminRole(id);
+
+        return "redirect:/admin/users";
     }
 }

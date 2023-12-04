@@ -6,7 +6,7 @@ import bg.softuni.ShopApp.model.entity.enums.RoleName;
 import java.util.List;
 
 public interface RoleService {
-    List<Role> getByName(RoleName roleName);
+    Role getByName(RoleName roleName);
 
     void initRoles();
 }

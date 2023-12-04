@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/common::head}">
+</head>
+<body>
+<header>
+    <nav th:replace="~{fragments/common::navbar}"></nav>
+</header>
+
+<main>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Всички потребители:</h1>
+
+            <table th:if="${#arrays.length(users)} != 0" class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Потребителско име</th>
+                    <th>Имена</th>
+                    <th>Емейл</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="u : ${users}" th:object="${u}">
+                    <td th:text="*{username}">John</td>
+                    <td th:text="|*{firstName} *{lastName}|">Doe</td>
+                    <td th:text="*{email}">Doe</td>
+                    <td>
+                        <form th:if="${#arrays.length(u.roles) == 1}" th:method="put" th:action="@{/admin/user/add-role/{id}(id = *{id})}">
+                            <input type="submit" th:value="|Направи админ|" class="btn btn-link nav-link text-success">
+                        </form>
+                        <form th:if="${#arrays.length(u.roles) == 2}" th:method="put" th:action="@{/admin/user/remove-role/{id}(id = *{id})}">
+                            <input type="submit" th:value="|Отнеми правата|" class="btn btn-link nav-link text-warning">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/common::footer}"></footer>
+</body>
+</html>
