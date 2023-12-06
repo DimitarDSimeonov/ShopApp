@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,12 +23,14 @@ public class ProductServiceImpl implements ProductService {
     private final UserService userService;
     private final ModelMapper modelMapper;
     private final ProductRepository productRepository;
+    private final MyTime myTime;
 
 
-    public ProductServiceImpl(UserService userService, ModelMapper modelMapper, ProductRepository productRepository) {
+    public ProductServiceImpl(UserService userService, ModelMapper modelMapper, ProductRepository productRepository, MyTime myTime) {
         this.userService = userService;
         this.modelMapper = modelMapper;
         this.productRepository = productRepository;
+        this.myTime = myTime;
     }
 
     @Override
@@ -57,14 +60,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getById(Long id) {
-        return productRepository.findById(id).get();
+        return productRepository.findById(id)
+                .get();
     }
 
     @Override
     public List<ProductViewDTO> searchByInput(ProductSearchDTO productSearchDTO) {
-        if (productSearchDTO.getTitle().isBlank()) {
-            productSearchDTO.setTitle(null);
-        }
+
         return productRepository.findByTitleContainingIgnoreCaseAndPriceLessThanEqualAndLocationAndCategory(productSearchDTO.getTitle(), productSearchDTO.getMaxPrice(),
                 productSearchDTO.getLocation(), productSearchDTO.getCategory())
                 .stream()
@@ -88,7 +90,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void clearOldProduct() {
 
-        List<Product> oldProduct = productRepository.findAllByDateOfPostBefore(LocalDateTime.now().minusMonths(1)).orElse(new ArrayList<>());
+        List<Product> oldProduct = productRepository.findAllByDateOfPostBefore(myTime.getNow().minusMonths(1)).orElse(new ArrayList<>());
 
         if (oldProduct.size() > 0) {
             productRepository.deleteAll(oldProduct);
@@ -111,6 +113,12 @@ public class ProductServiceImpl implements ProductService {
                 .stream()
                 .map(product -> modelMapper.map(product, ProductViewDTO.class))
                 .collect(Collectors.toList());
+    }
+}
+
+class MyTime{
+    LocalDateTime getNow() {
+        return LocalDateTime.now();
     }
 }
 //ToDo: change text with details view in html!

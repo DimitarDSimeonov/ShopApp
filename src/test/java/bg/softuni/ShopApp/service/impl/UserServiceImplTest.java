@@ -1,6 +1,9 @@
 package bg.softuni.ShopApp.service.impl;
 
+import bg.softuni.ShopApp.model.DTO.product.ProductHomePageViewDTO;
 import bg.softuni.ShopApp.model.DTO.user.UserRegisterDTO;
+import bg.softuni.ShopApp.model.DTO.user.UserViewDTO;
+import bg.softuni.ShopApp.model.entity.Product;
 import bg.softuni.ShopApp.model.entity.Role;
 import bg.softuni.ShopApp.model.entity.User;
 import bg.softuni.ShopApp.repository.UserRepository;
@@ -20,6 +23,8 @@ import java.util.Optional;
 import static bg.softuni.ShopApp.model.entity.enums.RoleName.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -123,9 +128,7 @@ class UserServiceImplTest {
 
         userServiceToTest.register(userRegisterDTO);
 
-        assertEquals(1, mockUserRepository.count() + 1);
-
-        //ToDo: refactor this test (now is not work!)
+        verify(mockUserRepository).save(any(User.class));
     }
 
     @Test
@@ -146,10 +149,36 @@ class UserServiceImplTest {
 
     @Test
     void getMyOffers() {
+        User testUser = createUser();
+
+        when(mockUserRepository.findByUsername(testUser.getUsername()))
+                .thenReturn(Optional.of(testUser));
+
+
+        assertEquals(0, userServiceToTest.getMyOffers(testUser.getUsername()).size());
+
+        testUser.getOfferProduct().add(new Product());
+
+        assertEquals(1,userServiceToTest.getMyOffers(testUser.getUsername()).size());
     }
 
     @Test
     void getAllUsers() {
+        List<User> users = new ArrayList<>();
+        for (int i = 1; i <= 3; i++) {
+            User test = createUser();
+            test.setUsername(test.getUsername() + i);
+            users.add(test);
+        }
+
+        User testUser = createUser();
+
+        when(mockUserRepository.findAllByUsernameNot(testUser.getUsername()))
+                .thenReturn(users);
+
+        List<UserViewDTO> list = userServiceToTest.getAllUsers(testUser.getUsername());
+
+        assertEquals(3, list.size());
     }
 
     @Test
@@ -208,6 +237,7 @@ class UserServiceImplTest {
         user.setPhoneNumber("0999999999");
         user.setEmail("Mitko@user.bg");
         user.setRoles(new ArrayList<>());
+        user.setOfferProduct(new ArrayList<>());
         user.getRoles().add(userRole);
         return user;
     }
