@@ -1,5 +1,6 @@
 package bg.softuni.ShopApp.service.impl;
 
+import bg.softuni.ShopApp.helper.MyTime;
 import bg.softuni.ShopApp.model.DTO.product.AddProductDTO;
 import bg.softuni.ShopApp.model.DTO.product.ProductOwnerViewDTO;
 import bg.softuni.ShopApp.model.DTO.product.ProductSearchDTO;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -116,9 +116,4 @@ public class ProductServiceImpl implements ProductService {
     }
 }
 
-class MyTime{
-    LocalDateTime getNow() {
-        return LocalDateTime.now();
-    }
-}
 //ToDo: change text with details view in html!
