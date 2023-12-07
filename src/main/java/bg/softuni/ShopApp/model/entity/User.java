@@ -2,6 +2,7 @@ package bg.softuni.ShopApp.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -42,6 +43,7 @@ public class User extends BaseEntity{
     private List<Product> offerProduct;
 
     public User() {
+        roles = new ArrayList<>();
     }
 
     public String getUsername() {
