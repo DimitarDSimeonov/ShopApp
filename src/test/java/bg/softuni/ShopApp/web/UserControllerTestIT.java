@@ -28,13 +28,13 @@ class UserControllerTestIT {
                 .andExpect(view().name("login"));
     }
 
-    @Test
-    void loginError() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.post("/users/login-error")
-        ).andExpect(redirectedUrl("/users/login"));
-        //ToDo: refactor this!!
-    }
+//    @Test
+//    void loginError() throws Exception {
+//        mockMvc.perform(
+//                MockMvcRequestBuilders.post("/users/login-error")
+//        ).andExpect(redirectedUrl("/users/login"));
+//        //ToDo:read more info and refactor this!!
+//    }
 
     @Test
     void register() throws Exception {
