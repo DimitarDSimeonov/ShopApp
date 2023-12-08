@@ -18,7 +18,7 @@ public class SecurityConfiguration {
         authorizeRequest ->
                authorizeRequest
                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-               .requestMatchers("/", "/users/register", "/users/login", "users/login-error", "/products/view/*", "comments/view/**").permitAll()
+               .requestMatchers("/", "/users/register", "/users/login", "users/login-error", "/products/view/**", "comments/view/**").permitAll()
                .requestMatchers("/admin/**").hasRole("ADMIN")
                .anyRequest().authenticated()
                //ToDo make other link
