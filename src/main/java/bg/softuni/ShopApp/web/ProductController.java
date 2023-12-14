@@ -28,6 +28,7 @@ public class ProductController {
     private final PictureUploadService pictureUploadService;
     private final PictureService pictureService;
     private final CommentService commentService;
+    private static final String MODEL_KEY_FOR_ADD_PRODUCT_DTO = "addProductDTO";
 
     public ProductController(ProductService productService, PictureUploadService pictureUploadService, PictureService pictureService, CommentService commentService) {
         this.productService = productService;
@@ -39,8 +40,8 @@ public class ProductController {
     @GetMapping("/add")
     public String addProduct(Model model) {
 
-        if (!model.containsAttribute("addProductDTO")) {
-            model.addAttribute("addProductDTO", new AddProductDTO());
+        if (!model.containsAttribute(MODEL_KEY_FOR_ADD_PRODUCT_DTO)) {
+            model.addAttribute(MODEL_KEY_FOR_ADD_PRODUCT_DTO, new AddProductDTO());
         }
 
         return "product-add";
@@ -52,7 +53,7 @@ public class ProductController {
                                     RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("addProductDTO", addProductDTO);
+            redirectAttributes.addFlashAttribute(MODEL_KEY_FOR_ADD_PRODUCT_DTO, addProductDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addProductDTO", bindingResult);
             return "redirect:add";
         }

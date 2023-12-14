@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserController {
 
     private final UserService userService;
+    private static final String MODEL_KEY_FOR_USER_REGISTER_DTO = "userRegisterDTO";
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -40,8 +41,8 @@ public class UserController {
     @GetMapping("/register")
     public String register(Model model) {
 
-        if (!model.containsAttribute("userRegisterDTO")) {
-            model.addAttribute("userRegisterDTO", new UserRegisterDTO());
+        if (!model.containsAttribute(MODEL_KEY_FOR_USER_REGISTER_DTO)) {
+            model.addAttribute(MODEL_KEY_FOR_USER_REGISTER_DTO, new UserRegisterDTO());
         }
 
         return "register";
@@ -53,7 +54,7 @@ public class UserController {
                                   RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("userRegisterDTO", userRegisterDTO);
+            redirectAttributes.addFlashAttribute(MODEL_KEY_FOR_USER_REGISTER_DTO, userRegisterDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterDTO", bindingResult);
             return "redirect:register";
         }
