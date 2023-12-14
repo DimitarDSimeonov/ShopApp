@@ -88,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
 
         List<Product> oldProduct = productRepository.findAllByDateOfPostBefore(myTime.getNow().minusMonths(1)).orElse(new ArrayList<>());
 
-        if (oldProduct.size() > 0) {
+        if (!oldProduct.isEmpty()) {
             productRepository.deleteAll(oldProduct);
         }
     }
