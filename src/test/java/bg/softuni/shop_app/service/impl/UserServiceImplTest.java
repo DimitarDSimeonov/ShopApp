@@ -1,7 +1,7 @@
 package bg.softuni.shop_app.service.impl;
 
-import bg.softuni.shop_app.model.DTO.user.UserRegisterDTO;
-import bg.softuni.shop_app.model.DTO.user.UserViewDTO;
+import bg.softuni.shop_app.model.dto.user.UserRegisterDTO;
+import bg.softuni.shop_app.model.dto.user.UserViewDTO;
 import bg.softuni.shop_app.model.entity.Product;
 import bg.softuni.shop_app.model.entity.Role;
 import bg.softuni.shop_app.model.entity.User;

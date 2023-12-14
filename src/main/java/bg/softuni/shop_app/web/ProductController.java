@@ -1,8 +1,8 @@
 package bg.softuni.shop_app.web;
 
-import bg.softuni.shop_app.model.DTO.comment.CommentAddDTO;
-import bg.softuni.shop_app.model.DTO.product.AddProductDTO;
-import bg.softuni.shop_app.model.DTO.product.ProductViewDTO;
+import bg.softuni.shop_app.model.dto.comment.CommentAddDTO;
+import bg.softuni.shop_app.model.dto.product.AddProductDTO;
+import bg.softuni.shop_app.model.dto.product.ProductViewDTO;
 import bg.softuni.shop_app.service.CommentService;
 import bg.softuni.shop_app.service.PictureService;
 import bg.softuni.shop_app.service.PictureUploadService;

@@ -1,8 +1,8 @@
 package bg.softuni.shop_app.service.impl;
 
-import bg.softuni.shop_app.model.DTO.product.ProductHomePageViewDTO;
-import bg.softuni.shop_app.model.DTO.user.UserRegisterDTO;
-import bg.softuni.shop_app.model.DTO.user.UserViewDTO;
+import bg.softuni.shop_app.model.dto.product.ProductHomePageViewDTO;
+import bg.softuni.shop_app.model.dto.user.UserRegisterDTO;
+import bg.softuni.shop_app.model.dto.user.UserViewDTO;
 import bg.softuni.shop_app.model.entity.User;
 import bg.softuni.shop_app.model.entity.enums.RoleName;
 import bg.softuni.shop_app.repository.UserRepository;

@@ -1,6 +1,6 @@
 package bg.softuni.shop_app.web;
 
-import bg.softuni.shop_app.model.DTO.user.UserRegisterDTO;
+import bg.softuni.shop_app.model.dto.user.UserRegisterDTO;
 import bg.softuni.shop_app.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;

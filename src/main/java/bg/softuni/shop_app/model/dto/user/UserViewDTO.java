@@ -1,4 +1,4 @@
-package bg.softuni.shop_app.model.DTO.user;
+package bg.softuni.shop_app.model.dto.user;
 
 import bg.softuni.shop_app.model.entity.Role;
 

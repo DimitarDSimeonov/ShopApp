@@ -1,4 +1,4 @@
-package bg.softuni.shop_app.model.DTO.comment;
+package bg.softuni.shop_app.model.dto.comment;
 
 public class CommentViewDTO {
 

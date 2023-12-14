@@ -1,7 +1,7 @@
 package bg.softuni.shop_app.web;
 
-import bg.softuni.shop_app.model.DTO.product.ProductSearchDTO;
-import bg.softuni.shop_app.model.DTO.product.ProductViewDTO;
+import bg.softuni.shop_app.model.dto.product.ProductSearchDTO;
+import bg.softuni.shop_app.model.dto.product.ProductViewDTO;
 import bg.softuni.shop_app.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;

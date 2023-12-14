@@ -1,6 +1,6 @@
 package bg.softuni.shop_app.web;
 
-import bg.softuni.shop_app.model.DTO.comment.CommentViewDTO;
+import bg.softuni.shop_app.model.dto.comment.CommentViewDTO;
 import bg.softuni.shop_app.service.CommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

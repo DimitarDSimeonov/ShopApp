@@ -1,33 +1,29 @@
-package bg.softuni.shop_app.model.DTO.product;
+package bg.softuni.shop_app.model.dto.product;
 
-import bg.softuni.shop_app.model.entity.Picture;
-import bg.softuni.shop_app.model.entity.User;
 import bg.softuni.shop_app.model.entity.enums.Category;
 import bg.softuni.shop_app.model.entity.enums.Location;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-public class ProductViewDTO {
+public class AddProductDTO {
 
-    private Long id;
+    @NotBlank(message = "Моля въведете заглавие!")
     private String title;
+
+    @NotBlank(message = "Моля въведете описание!")
     private String description;
+
+    @NotNull(message = "Моля Въведете цена!")
+    @Positive(message = "Цената не може да бъде отрицателна!")
     private BigDecimal price;
     private Category category;
     private Location location;
-    private List<Picture> pictures;
-    private User seller;
+    private String pictureURL;
 
-    public ProductViewDTO() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public AddProductDTO() {
     }
 
     public String getTitle() {
@@ -46,14 +42,6 @@ public class ProductViewDTO {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public Category getCategory() {
         return category;
     }
@@ -70,19 +58,19 @@ public class ProductViewDTO {
         this.location = location;
     }
 
-    public List<Picture> getPictures() {
-        return pictures;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setPictures(List<Picture> pictures) {
-        this.pictures = pictures;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
-    public User getSeller() {
-        return seller;
+    public String getPictureURL() {
+        return pictureURL;
     }
 
-    public void setSeller(User seller) {
-        this.seller = seller;
+    public void setPicturesURL(String picturesURL) {
+        this.pictureURL = picturesURL;
     }
 }

@@ -1,7 +1,7 @@
 package bg.softuni.shop_app.service;
 
-import bg.softuni.shop_app.model.DTO.comment.CommentAddDTO;
-import bg.softuni.shop_app.model.DTO.comment.CommentViewDTO;
+import bg.softuni.shop_app.model.dto.comment.CommentAddDTO;
+import bg.softuni.shop_app.model.dto.comment.CommentViewDTO;
 
 import java.util.List;
 

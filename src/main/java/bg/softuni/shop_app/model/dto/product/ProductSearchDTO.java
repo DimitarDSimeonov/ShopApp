@@ -1,4 +1,4 @@
-package bg.softuni.shop_app.model.DTO.product;
+package bg.softuni.shop_app.model.dto.product;
 
 import bg.softuni.shop_app.model.entity.enums.Category;
 import bg.softuni.shop_app.model.entity.enums.Location;

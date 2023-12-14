@@ -1,10 +1,10 @@
 package bg.softuni.shop_app.service.impl;
 
 import bg.softuni.shop_app.helper.MyTime;
-import bg.softuni.shop_app.model.DTO.product.AddProductDTO;
-import bg.softuni.shop_app.model.DTO.product.ProductOwnerViewDTO;
-import bg.softuni.shop_app.model.DTO.product.ProductSearchDTO;
-import bg.softuni.shop_app.model.DTO.product.ProductViewDTO;
+import bg.softuni.shop_app.model.dto.product.AddProductDTO;
+import bg.softuni.shop_app.model.dto.product.ProductOwnerViewDTO;
+import bg.softuni.shop_app.model.dto.product.ProductSearchDTO;
+import bg.softuni.shop_app.model.dto.product.ProductViewDTO;
 import bg.softuni.shop_app.model.entity.Product;
 import bg.softuni.shop_app.repository.ProductRepository;
 import bg.softuni.shop_app.service.ProductService;

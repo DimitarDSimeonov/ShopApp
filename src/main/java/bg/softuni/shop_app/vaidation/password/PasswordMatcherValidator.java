@@ -1,6 +1,6 @@
 package bg.softuni.shop_app.vaidation.password;
 
-import bg.softuni.shop_app.model.DTO.user.UserRegisterDTO;
+import bg.softuni.shop_app.model.dto.user.UserRegisterDTO;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

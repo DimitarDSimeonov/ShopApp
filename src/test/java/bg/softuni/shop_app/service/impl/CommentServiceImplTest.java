@@ -1,7 +1,7 @@
 package bg.softuni.shop_app.service.impl;
 
-import bg.softuni.shop_app.model.DTO.comment.CommentAddDTO;
-import bg.softuni.shop_app.model.DTO.comment.CommentViewDTO;
+import bg.softuni.shop_app.model.dto.comment.CommentAddDTO;
+import bg.softuni.shop_app.model.dto.comment.CommentViewDTO;
 import bg.softuni.shop_app.model.entity.Comment;
 import bg.softuni.shop_app.model.entity.Product;
 import bg.softuni.shop_app.model.entity.User;
