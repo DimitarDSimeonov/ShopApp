@@ -2,7 +2,7 @@ package bg.softuni.shop_app.model.dto.user;
 
 import bg.softuni.shop_app.vaidation.email.UniqueEmail;
 import bg.softuni.shop_app.vaidation.password.PasswordMatcher;
-import bg.softuni.shop_app.vaidation.phoneNumber.UniquePhoneNumber;
+import bg.softuni.shop_app.vaidation.phone_number.UniquePhoneNumber;
 import bg.softuni.shop_app.vaidation.username.UniqueUsername;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

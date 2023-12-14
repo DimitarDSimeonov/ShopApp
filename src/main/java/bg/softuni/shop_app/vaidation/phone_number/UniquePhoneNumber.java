@@ -1,4 +1,4 @@
-package bg.softuni.shop_app.vaidation.phoneNumber;
+package bg.softuni.shop_app.vaidation.phone_number;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

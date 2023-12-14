@@ -1,5 +1,5 @@
 function showInGallery(imgs) {
-  var expandImg = document.getElementById("expandedImg");
+  let expandImg = document.getElementById("expandedImg");
   expandImg.src = imgs.src;
   expandImg.parentElement.style.display = "block";
 }

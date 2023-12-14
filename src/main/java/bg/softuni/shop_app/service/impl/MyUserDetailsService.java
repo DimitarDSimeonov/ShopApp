@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.stream.Collectors;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
@@ -33,7 +31,7 @@ public class MyUserDetailsService implements UserDetailsService {
                 org.springframework.security.core.userdetails.User
                         .withUsername(user.getUsername())
                         .password(user.getPassword())
-                        .authorities(user.getRoles().stream().map(MyUserDetailsService::mapRoles).collect(Collectors.toList()))
+                        .authorities(user.getRoles().stream().map(MyUserDetailsService::mapRoles).toList())
                         .build();
     }
 
