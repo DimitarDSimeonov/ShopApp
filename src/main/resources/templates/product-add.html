@@ -35,7 +35,7 @@
                         <label for="location">Локация</label>
                         <select th:field="*{location}"  name="location" id="location" class="form-control">
                             <option value="">Изберете локация</option>
-                            <option th:each="l : ${T(bg.softuni.ShopApp.model.entity.enums.Location).values()}" th:value="${l}" th:text="${l.displayName}">Изберете локация</option>
+                            <option th:each="l : ${T(bg.softuni.shop_app.model.entity.enums.Location).values()}" th:value="${l}" th:text="${l.displayName}">Изберете локация</option>
                         </select>
                         <div th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="text-danger"></div>
                     </div>
@@ -43,7 +43,7 @@
                         <label for="category">Категория</label>
                         <select th:field="*{category}" name="category" id="category" class="form-control">
                             <option value="">Изерете категория</option>
-                            <option th:each="c : ${T(bg.softuni.ShopApp.model.entity.enums.Category).values()}" th:value="${c}" th:text="${c.displayName}">Превозни средства</option>
+                            <option th:each="c : ${T(bg.softuni.shop_app.model.entity.enums.Category).values()}" th:value="${c}" th:text="${c.displayName}">Превозни средства</option>
                         </select>
                         <div th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger"></div>
                     </div>
