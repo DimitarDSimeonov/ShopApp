@@ -70,11 +70,8 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findByTitleContainingIgnoreCaseAndPriceLessThanEqualAndLocationAndCategory(productSearchDTO.getTitle(), productSearchDTO.getMaxPrice(),
                 productSearchDTO.getLocation(), productSearchDTO.getCategory())
                 .stream()
-                .map(product -> {
-                    ProductViewDTO productViewDTO = modelMapper.map(product, ProductViewDTO.class);
-                    return productViewDTO;
-                })
-                .collect(Collectors.toList());
+                .map(product -> modelMapper.map(product, ProductViewDTO.class))
+                .toList();
     }
 
     @Override
@@ -102,9 +99,8 @@ public class ProductServiceImpl implements ProductService {
         return productRepository
                 .findTop10OrderByDateOfPostDesc()
                 .stream()
-                .map(product ->
-                    modelMapper.map(product, ProductViewDTO.class)
-                ).collect(Collectors.toList());
+                .map(product -> modelMapper.map(product, ProductViewDTO.class))
+                .toList();
     }
 
     @Override
@@ -112,7 +108,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll()
                 .stream()
                 .map(product -> modelMapper.map(product, ProductViewDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 }
 

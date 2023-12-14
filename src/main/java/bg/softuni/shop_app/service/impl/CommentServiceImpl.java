@@ -43,11 +43,8 @@ public class CommentServiceImpl implements CommentService {
     public List<CommentViewDTO> getCommentsByProductId(Long id) {
         return commentRepository.findAllByProduct_Id(id)
                 .stream()
-                .map(comment -> {
-                    CommentViewDTO commentViewDTO = modelMapper.map(comment, CommentViewDTO.class);
-                    return commentViewDTO;
-                })
-                .collect(Collectors.toList());
+                .map(comment -> modelMapper.map(comment, CommentViewDTO.class))
+                .toList();
     }
 
     @Override
@@ -56,7 +53,7 @@ public class CommentServiceImpl implements CommentService {
                 .findAll()
                 .stream()
                 .map(comment -> modelMapper.map(comment, CommentViewDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

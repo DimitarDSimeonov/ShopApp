@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -72,9 +71,8 @@ public class UserServiceImpl implements UserService {
                 .get()
                 .getOfferProduct()
                 .stream()
-                .map(product ->
-                     modelMapper.map(product, ProductHomePageViewDTO.class))
-                .collect(Collectors.toList());
+                .map(product -> modelMapper.map(product, ProductHomePageViewDTO.class))
+                .toList();
 
     }
 
@@ -83,7 +81,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllByUsernameNot(username)
                 .stream()
                 .map(user -> modelMapper.map(user, UserViewDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
