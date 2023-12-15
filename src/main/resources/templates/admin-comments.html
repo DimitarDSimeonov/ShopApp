@@ -16,7 +16,7 @@
         <div class="jumbotron">
             <h1>Всички коментари:</h1>
 
-            <table th:if="${#arrays.length(comments)} != 0" class="table table-condensed">
+            <table th:if="${#arrays.length(comments)} != 0" class="table table-condensed" aria-hidden="true">
                 <thead>
                 <tr>
                     <th>Автор</th>

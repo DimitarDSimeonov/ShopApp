@@ -16,7 +16,7 @@
         <div class="jumbotron">
             <h1>Всички потребители:</h1>
 
-            <table th:if="${#arrays.length(users)} != 0" class="table table-condensed">
+            <table th:if="${#arrays.length(users)} != 0" class="table table-condensed" aria-hidden="true">
                 <thead>
                 <tr>
                     <th>Потребителско име</th>

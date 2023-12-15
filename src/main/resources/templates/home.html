@@ -13,7 +13,7 @@
         <div class="jumbotron">
             <h1>Моите обяви:</h1>
 
-            <table th:if="${#arrays.length(myOffers)} != 0" class="table table-condensed">
+            <table th:if="${#arrays.length(myOffers)} != 0" class="table table-condensed" aria-hidden="true">
                 <thead>
                 <tr>
                     <th>Заглавие</th>

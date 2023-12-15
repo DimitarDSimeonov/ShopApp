@@ -81,13 +81,13 @@
 <div th:fragment="gallery">
     <div class="row">
         <div th:each="p : *{pictures}" th:object="${p}" class="column">
-            <img th:src="@{*{URL}}" style="width:100%" onclick="showInGallery(this);">
+            <img th:src="@{*{URL}}" style="width:100%" onclick="showInGallery(this);" alt="">
         </div>
     </div>
 
     <div class="container-img">
         <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-        <img id="expandedImg" style="width:100%">
+        <img id="expandedImg" style="width:100%" alt="">
     </div>
 </div>
 
