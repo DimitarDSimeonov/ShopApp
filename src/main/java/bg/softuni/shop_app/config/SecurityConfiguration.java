@@ -21,7 +21,6 @@ public class SecurityConfiguration {
                .requestMatchers("/", "/users/register", "/users/login", "users/login-error", "/products/view/**", "comments/view/**").permitAll()
                .requestMatchers("/admin/**").hasRole("ADMIN")
                .anyRequest().authenticated()
-               //ToDo make other link
         ).formLogin(
                formLogin ->
                      formLogin

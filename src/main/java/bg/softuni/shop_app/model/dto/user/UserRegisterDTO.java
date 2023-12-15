@@ -31,7 +31,7 @@ public class UserRegisterDTO {
     @UniqueEmail
     private String email;
 
-    @Pattern(regexp = "^0[0-9]{9}$" , message = "Моля въведете валиден телефонен номер!")
+    @Pattern(regexp = "^08[789]{2}\\d{6}$" , message = "Моля въведете валиден телефонен номер!")
     @UniquePhoneNumber
     private String phoneNumber;
 
