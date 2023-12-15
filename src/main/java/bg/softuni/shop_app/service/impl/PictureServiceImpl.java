@@ -21,7 +21,7 @@ public class PictureServiceImpl implements PictureService {
     @Override
     public void createPicture(String url) {
         Picture picture = new Picture();
-        picture.setURL(url);
+        picture.setUrl(url);
         pictureRepository.save(picture);
     }
 

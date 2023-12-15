@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Picture extends BaseEntity{
 
     @Column(name = "url", nullable = false)
-    private String URL;
+    private String url;
 
     @ManyToOne
     private Product product;
@@ -18,12 +18,12 @@ public class Picture extends BaseEntity{
     public Picture() {
     }
 
-    public String getURL() {
-        return URL;
+    public String getUrl() {
+        return url;
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Product getProduct() {

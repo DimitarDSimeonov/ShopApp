@@ -50,23 +50,11 @@ class AdminControllerTestIT {
     }
 
     @Test
-    void deleteProductById() {
-    }
-
-    @Test
     @WithMockUser(username = "username", roles={"ADMIN"})
     void allUsers() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/admin/users")
                         .with(csrf())
         ).andExpect(model().attributeExists("users"));
-    }
-
-    @Test
-    void addAdminRole() {
-    }
-
-    @Test
-    void removeAdminRole() {
     }
 }

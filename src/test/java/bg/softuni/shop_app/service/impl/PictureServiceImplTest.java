@@ -45,7 +45,7 @@ class PictureServiceImplTest {
     void getPictureByURL() {
         String url = "";
         Picture picture = new Picture();
-        picture.setURL(url);
+        picture.setUrl(url);
 
         when(mockPictureRepository.findByURL(url))
                 .thenReturn(picture);
@@ -53,7 +53,7 @@ class PictureServiceImplTest {
         Picture result = pictureServiceToTest.getPictureByURL(url);
 
         assertNotNull(result);
-        assertEquals(picture.getURL(), result.getURL());
+        assertEquals(picture.getUrl(), result.getUrl());
     }
 
     @Test
