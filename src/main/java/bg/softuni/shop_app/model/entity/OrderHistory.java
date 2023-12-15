@@ -17,9 +17,6 @@ public class OrderHistory extends BaseEntity{
     @OneToMany(mappedBy = "orderHistory")
     private List<Order> orders;
 
-    public OrderHistory() {
-    }
-
     public User getUser() {
         return user;
     }

@@ -22,9 +22,6 @@ public class Comment extends BaseEntity{
     @ManyToOne
     private User author;
 
-    public Comment() {
-    }
-
     public String getContent() {
         return content;
     }

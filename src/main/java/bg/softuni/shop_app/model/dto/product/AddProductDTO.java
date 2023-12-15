@@ -23,9 +23,6 @@ public class AddProductDTO {
     private Location location;
     private String pictureURL;
 
-    public AddProductDTO() {
-    }
-
     public String getTitle() {
         return title;
     }

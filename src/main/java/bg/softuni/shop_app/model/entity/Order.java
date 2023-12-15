@@ -20,9 +20,6 @@ public class Order extends BaseEntity{
     @ManyToOne()
     private OrderHistory orderHistory;
 
-    public Order() {
-    }
-
     public User getUser() {
         return user;
     }

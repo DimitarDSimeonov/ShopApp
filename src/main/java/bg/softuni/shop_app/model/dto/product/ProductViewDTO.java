@@ -19,9 +19,6 @@ public class ProductViewDTO {
     private List<Picture> pictures;
     private User seller;
 
-    public ProductViewDTO() {
-    }
-
     public Long getId() {
         return id;
     }

@@ -47,7 +47,7 @@ class PictureServiceImplTest {
         Picture picture = new Picture();
         picture.setUrl(url);
 
-        when(mockPictureRepository.findByURL(url))
+        when(mockPictureRepository.findByUrl(url))
                 .thenReturn(picture);
 
         Picture result = pictureServiceToTest.getPictureByURL(url);
@@ -66,7 +66,7 @@ class PictureServiceImplTest {
         when(mockProductService.getById(id))
                 .thenReturn(product);
 
-        when(mockPictureRepository.findByURL(url))
+        when(mockPictureRepository.findByUrl(url))
                 .thenReturn(picture);
 
         pictureServiceToTest.setProduct(id, url);

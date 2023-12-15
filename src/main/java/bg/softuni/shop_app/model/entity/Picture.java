@@ -15,9 +15,6 @@ public class Picture extends BaseEntity{
     @OneToOne
     private User user;
 
-    public Picture() {
-    }
-
     public String getUrl() {
         return url;
     }

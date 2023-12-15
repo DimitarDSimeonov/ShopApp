@@ -35,9 +35,6 @@ public class UserRegisterDTO {
     @UniquePhoneNumber
     private String phoneNumber;
 
-    public UserRegisterDTO() {
-    }
-
     public String getUsername() {
         return username;
     }

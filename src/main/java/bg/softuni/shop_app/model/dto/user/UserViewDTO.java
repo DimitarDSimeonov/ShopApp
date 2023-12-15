@@ -13,9 +13,6 @@ public class UserViewDTO {
     private String email;
     private List<Role> roles;
 
-    public UserViewDTO() {
-    }
-
     public Long getId() {
         return id;
     }

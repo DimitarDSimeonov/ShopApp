@@ -8,9 +8,6 @@ public class ProductHomePageViewDTO {
     private String title;
     private BigDecimal price;
 
-    public ProductHomePageViewDTO() {
-    }
-
     public Long getId() {
         return id;
     }

@@ -27,14 +27,14 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public Picture getPictureByURL(String pictureURL) {
-        return pictureRepository.findByURL(pictureURL);
+        return pictureRepository.findByUrl(pictureURL);
     }
 
     @Override
     public void setProduct(Long id, String url) {
         Product product = productService.getById(id);
 
-        Picture picture = pictureRepository.findByURL(url);
+        Picture picture = pictureRepository.findByUrl(url);
         picture.setProduct(product);
 
         pictureRepository.saveAndFlush(picture);

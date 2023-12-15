@@ -14,9 +14,6 @@ public class ProductSearchDTO {
     private Location location;
     private Category category;
 
-    public ProductSearchDTO() {
-    }
-
     public String getTitle() {
         return title;
     }

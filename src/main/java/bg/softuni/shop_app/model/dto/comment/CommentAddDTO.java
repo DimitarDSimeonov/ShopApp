@@ -4,9 +4,6 @@ public class CommentAddDTO {
 
     private String content;
 
-    public CommentAddDTO() {
-    }
-
     public String getContent() {
         return content;
     }

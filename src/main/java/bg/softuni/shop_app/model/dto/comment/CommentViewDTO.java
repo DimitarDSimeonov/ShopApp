@@ -6,9 +6,6 @@ public class CommentViewDTO {
     private String content;
     private String author;
 
-    public CommentViewDTO() {
-    }
-
     public Long getId() {
         return id;
     }
