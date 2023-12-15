@@ -8,6 +8,7 @@ import bg.softuni.shop_app.model.entity.enums.RoleName;
 import bg.softuni.shop_app.repository.UserRepository;
 import bg.softuni.shop_app.service.RoleService;
 import bg.softuni.shop_app.service.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -61,14 +62,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByUsername(String username) {
-        return userRepository.findByUsername(username).get();
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("Not found user with username: " + username));
     }
 
     @Override
     public List<ProductHomePageViewDTO> getMyOffers(String username) {
         return userRepository
                 .findByUsername(username)
-                .get()
+                .orElseThrow(() -> new EntityNotFoundException("Not found user with username: " + username))
                 .getOfferProduct()
                 .stream()
                 .map(product -> modelMapper.map(product, ProductHomePageViewDTO.class))
@@ -86,7 +88,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addAdminRole(Long id) {
-        User user = userRepository.findById(id).get();
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Not found user with id: " + id));
 
         user.getRoles().add(roleService.getByName(RoleName.ADMIN));
 
@@ -95,7 +98,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void removeAdminRole(Long id) {
-        User user = userRepository.findById(id).get();
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Not found user with id: " + id));
 
         user.getRoles().remove(roleService.getByName(RoleName.ADMIN));
 
