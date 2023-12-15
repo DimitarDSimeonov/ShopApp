@@ -9,6 +9,7 @@ import bg.softuni.shop_app.model.entity.Product;
 import bg.softuni.shop_app.repository.ProductRepository;
 import bg.softuni.shop_app.service.ProductService;
 import bg.softuni.shop_app.service.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -53,14 +54,14 @@ public class ProductServiceImpl implements ProductService {
     public ProductOwnerViewDTO getOwnerViewById(Long id) {
         return productRepository.findById(id)
                 .map(product ->modelMapper.map(product, ProductOwnerViewDTO.class))
-                .get();
+                .orElseThrow(() -> new EntityNotFoundException("Not found product with id: " + id));
     }
 
 
     @Override
     public Product getById(Long id) {
         return productRepository.findById(id)
-                .get();
+                .orElseThrow(() -> new EntityNotFoundException("Not found product with id: " + id));
     }
 
     @Override
@@ -80,7 +81,7 @@ public class ProductServiceImpl implements ProductService {
                 .map(product ->
             modelMapper.map(product, ProductViewDTO.class)
         )
-                .get();
+                .orElseThrow(() -> new EntityNotFoundException("Not found product with id: " + id));
     }
 
     @Override
