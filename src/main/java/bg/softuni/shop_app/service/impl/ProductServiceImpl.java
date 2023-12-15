@@ -13,6 +13,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.print.DocFlavor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class ProductServiceImpl implements ProductService {
     private final ModelMapper modelMapper;
     private final ProductRepository productRepository;
     private final MyTime myTime;
+    private static final String PRODUCT_NOT_FOUND_BY_ID_ERROR_MESSAGE = "Not found product with id: ";
 
 
     public ProductServiceImpl(UserService userService, ModelMapper modelMapper, ProductRepository productRepository, MyTime myTime) {
@@ -54,14 +56,14 @@ public class ProductServiceImpl implements ProductService {
     public ProductOwnerViewDTO getOwnerViewById(Long id) {
         return productRepository.findById(id)
                 .map(product ->modelMapper.map(product, ProductOwnerViewDTO.class))
-                .orElseThrow(() -> new EntityNotFoundException("Not found product with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException(PRODUCT_NOT_FOUND_BY_ID_ERROR_MESSAGE + id));
     }
 
 
     @Override
     public Product getById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Not found product with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException(PRODUCT_NOT_FOUND_BY_ID_ERROR_MESSAGE + id));
     }
 
     @Override
@@ -81,7 +83,7 @@ public class ProductServiceImpl implements ProductService {
                 .map(product ->
             modelMapper.map(product, ProductViewDTO.class)
         )
-                .orElseThrow(() -> new EntityNotFoundException("Not found product with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException(PRODUCT_NOT_FOUND_BY_ID_ERROR_MESSAGE + id));
     }
 
     @Override
