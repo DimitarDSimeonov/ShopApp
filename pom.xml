@@ -164,7 +164,6 @@
 								<goals>
 									<goal>report</goal>
 								</goals>
-								<phase>verify</phase>
 								<configuration>
 									<formats>
 										<format>XML</format>
