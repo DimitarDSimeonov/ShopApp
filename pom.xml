@@ -151,6 +151,14 @@
 									<goal>prepare-agent</goal>
 								</goals>
 							</execution>
+
+							<execution>
+								<id>default-prepare-agent-integration</id>
+								<goals>
+									<goal>prepare-agent-integration</goal>
+								</goals>
+							</execution>
+
 							<execution>
 								<id>report</id>
 								<goals>
