@@ -5,23 +5,28 @@ import bg.softuni.shop_app.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-@SpringBootTest
+
+@WebMvcTest(HomeController.class)
 class HomeControllerTestIT {
 
+    @Autowired
     private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private UserService userService;
 
-    @Mock
+    @MockBean
     private ProductService productService;
 
     @BeforeEach
@@ -31,11 +36,10 @@ class HomeControllerTestIT {
 
     @Test
     void index() throws Exception {
-        MvcResult result = mockMvc.perform(
+         mockMvc.perform(
                 MockMvcRequestBuilders.get("/")
-        ).andReturn();
-
-        assertEquals("index", result.getModelAndView().getViewName());
+                        .with(csrf())
+        ).andExpect(view().name("index"));
     }
 
 //    @Test
