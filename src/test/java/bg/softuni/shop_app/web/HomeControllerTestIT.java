@@ -8,19 +8,28 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.ui.Model;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
+@AutoConfigureMockMvc
 class HomeControllerTestIT {
 
+    private HomeController homeControllerToTest;
 
+
+    @Autowired
     private MockMvc mockMvc;
 
     @Mock
@@ -31,7 +40,7 @@ class HomeControllerTestIT {
 
     @BeforeEach
     void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(new HomeController(userService, productService)).build();
+        homeControllerToTest = new HomeController(userService, productService);
     }
 
     @Test
@@ -39,7 +48,10 @@ class HomeControllerTestIT {
          mockMvc.perform(
                 MockMvcRequestBuilders.get("/")
                         .with(csrf())
-        ).andExpect(view().name("index"));
+        ).andExpect(view().name("index"))
+                 .andExpect(model().attributeExists("lastOffers"));
+
+         assertEquals("index", homeControllerToTest.index(mock(Model.class)));
     }
 
 //    @Test
