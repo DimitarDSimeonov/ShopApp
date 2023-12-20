@@ -17,7 +17,7 @@ import java.util.List;
 public class SearchController {
 
     private ProductService productService;
-    private static final String MODE_KEY_FOR_PRODUCT_SEARCH_DTO = "productSearchDTO";
+    private static final String MODEL_KEY_FOR_PRODUCT_SEARCH_DTO = "productSearchDTO";
 
     public SearchController(ProductService productService) {
         this.productService = productService;
@@ -25,8 +25,8 @@ public class SearchController {
 
     @GetMapping("/search")
     public String search(Model model) {
-        if (!model.containsAttribute(MODE_KEY_FOR_PRODUCT_SEARCH_DTO)) {
-            model.addAttribute(MODE_KEY_FOR_PRODUCT_SEARCH_DTO, new ProductSearchDTO());
+        if (!model.containsAttribute(MODEL_KEY_FOR_PRODUCT_SEARCH_DTO)) {
+            model.addAttribute(MODEL_KEY_FOR_PRODUCT_SEARCH_DTO, new ProductSearchDTO());
         }
 
         return "product-search";
@@ -39,7 +39,7 @@ public class SearchController {
                                 Model model) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute(MODE_KEY_FOR_PRODUCT_SEARCH_DTO, productSearchDTO);
+            redirectAttributes.addFlashAttribute(MODEL_KEY_FOR_PRODUCT_SEARCH_DTO, productSearchDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productSearchDTO", bindingResult);
             return "redirect:search";
         }
