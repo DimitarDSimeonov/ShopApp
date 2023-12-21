@@ -34,7 +34,15 @@ class SearchControllerTest {
 
     @Test
     void search() {
-        assertEquals("product-search", searchControllerToTest.search(mock(Model.class)));
+        Model model = mock(Model.class);
+
+        when(model.containsAttribute("productSearchDTO"))
+                .thenReturn(true);
+        assertEquals("product-search", searchControllerToTest.search(model));
+
+        when(model.containsAttribute("productSearchDTO"))
+                .thenReturn(false);
+        assertEquals("product-search", searchControllerToTest.search(model));
     }
 
     @Test
