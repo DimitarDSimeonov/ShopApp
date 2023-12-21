@@ -1,5 +1,6 @@
 package bg.softuni.shop_app.web;
 
+import bg.softuni.shop_app.model.dto.product.ProductHomePageViewDTO;
 import bg.softuni.shop_app.service.ProductService;
 import bg.softuni.shop_app.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,10 +9,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.ui.Model;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
@@ -31,18 +36,16 @@ class HomeControllerTest {
     }
 
     @Test
-    void index() throws Exception {
+    void index(){
 
          assertEquals("index", homeControllerToTest.index(mock(Model.class)));
     }
 
-//    @Test
-//    @WithMockUser( roles = {"ADMIN", "USER"})
-//    void home() throws Exception {
-//        mockMvc.perform(
-//                MockMvcRequestBuilders.get("/home")
-//        ).andExpect(model().attributeExists("myOffers"))
-//                .andExpect(view().name("home"));
-//        //ToDo: How to mock userService for empty DB
-//    }
+    @Test
+    @WithMockUser(username = "username" ,roles = {"ADMIN", "USER"})
+    void home() {
+        when(userService.getMyOffers("username"))
+                .thenReturn(new ArrayList<ProductHomePageViewDTO>());
+        assertEquals("home", homeControllerToTest.home(mock(Model.class)));
+    }
 }
