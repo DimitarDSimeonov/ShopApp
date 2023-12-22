@@ -50,7 +50,8 @@ public class ProductController {
     @PostMapping("/add")
     public String addProductConfirm(@Valid AddProductDTO addProductDTO,
                                     BindingResult bindingResult,
-                                    RedirectAttributes redirectAttributes) {
+                                    RedirectAttributes redirectAttributes,
+                                    Principal principal) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute(MODEL_KEY_FOR_ADD_PRODUCT_DTO, addProductDTO);
@@ -58,8 +59,7 @@ public class ProductController {
             return "redirect:add";
         }
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
+        String username = principal.getName();
 
 
         Long id = productService.createProduct(addProductDTO, username);
