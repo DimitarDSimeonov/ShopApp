@@ -8,8 +8,6 @@ import bg.softuni.shop_app.service.PictureService;
 import bg.softuni.shop_app.service.PictureUploadService;
 import bg.softuni.shop_app.service.ProductService;
 import jakarta.validation.Valid;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
