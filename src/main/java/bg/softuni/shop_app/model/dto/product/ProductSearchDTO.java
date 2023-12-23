@@ -3,9 +3,13 @@ package bg.softuni.shop_app.model.dto.product;
 import bg.softuni.shop_app.model.entity.enums.Category;
 import bg.softuni.shop_app.model.entity.enums.Location;
 import jakarta.validation.constraints.DecimalMin;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Getter
+@Setter
 public class ProductSearchDTO {
 
     private String title;
@@ -13,36 +17,4 @@ public class ProductSearchDTO {
     private BigDecimal maxPrice;
     private Location location;
     private Category category;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public BigDecimal getMaxPrice() {
-        return maxPrice;
-    }
-
-    public void setMaxPrice(BigDecimal maxPrice) {
-        this.maxPrice = maxPrice;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }
