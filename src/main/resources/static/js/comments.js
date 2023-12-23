@@ -28,5 +28,3 @@ function loadComments() {
     let form = document.getElementById('addComment');
     form.style.display ='contents';
 }
-
-//ToDo: change comments styling

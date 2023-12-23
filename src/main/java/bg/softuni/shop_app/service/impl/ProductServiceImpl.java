@@ -113,4 +113,3 @@ public class ProductServiceImpl implements ProductService {
     }
 }
 
-//ToDo: change text with details view in html!
